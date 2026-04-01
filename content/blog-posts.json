@@ -1,0 +1,359 @@
+{
+  "source_url": "https://www.icentech.com/news-and-blog",
+  "management": {
+    "model": "repo-managed-local-blog",
+    "body_dir": "content/blog",
+    "media_dir": "content/blog-media"
+  },
+  "posts": [
+    {
+      "slug": "icentech-successfully-renews-iso-17100-iso-18587-certifications",
+      "title": "iCentech Successfully Renews ISO 17100 & ISO 18587  Certifications",
+      "date": "2026年3月23日",
+      "excerpt": "We are proud to announce that iCentech has successfully completed the renewal audits for ISO...",
+      "subtitle": "Setting Higher Standards for Language Services",
+      "image": "blog/icentech-successfully-renews-iso-17100-iso-18587-certifications.png",
+      "source_url": "https://www.icentech.com/blog/icentech-successfully-renews-iso-17100-iso-18587-certifications",
+      "tags": [
+        "ISO 17100",
+        "ISO 18587",
+        "Certified translation services",
+        "Language service provider"
+      ],
+      "language": "en",
+      "body_file": "content/blog/icentech-successfully-renews-iso-17100-iso-18587-certifications.html"
+    },
+    {
+      "slug": "the-technical-artery-across-languages-how-to-equip-your-global-cms-with-a",
+      "title": "The Technical Artery Across Languages: How to Equip Your Global CMS with a \"Professional Translation Engine\"",
+      "date": "2026年1月30日",
+      "excerpt": "Late at night, the overseas digital team of a Chinese new energy vehicle company is in disarray....",
+      "subtitle": "",
+      "image": "blog/the-technical-artery-across-languages-how-to-equip-your-global-cms-with-a.png",
+      "source_url": "https://www.icentech.com/blog/the-technical-artery-across-languages-how-to-equip-your-global-cms-with-a",
+      "tags": [
+        "Multilingual CMS Integration",
+        "Translation API",
+        "Brand Consistency",
+        "translation",
+        "Localization"
+      ],
+      "language": "en",
+      "body_file": "content/blog/the-technical-artery-across-languages-how-to-equip-your-global-cms-with-a.html"
+    },
+    {
+      "slug": "certified-true-copy-vs-certified-translation-what-s-the-difference",
+      "title": "Certified True Copy vs. Certified Translation: What’s the Difference?",
+      "date": "2025年12月29日",
+      "excerpt": "In the world of international business, legal compliance, and immigration, you are often asked to...",
+      "subtitle": "",
+      "image": "blog/certified-true-copy-vs-certified-translation-what-s-the-difference.png",
+      "source_url": "https://www.icentech.com/blog/certified-true-copy-vs-certified-translation-what-s-the-difference",
+      "tags": [
+        "Language Service Provider",
+        "certified translation",
+        "CTC",
+        "global business",
+        "Global market expansion"
+      ],
+      "language": "en",
+      "body_file": "content/blog/certified-true-copy-vs-certified-translation-what-s-the-difference.html"
+    },
+    {
+      "slug": "case-study-multilingual-translation-and-information-management-supporting",
+      "title": "Case Study: Multilingual Translation and Information Management Supporting Global Recall Transparency",
+      "date": "2025年8月20日",
+      "excerpt": "Background We have been providing a key client with comprehensive services in collecting,...",
+      "subtitle": "",
+      "image": "blog/case-study-multilingual-translation-and-information-management-supporting.png",
+      "source_url": "https://www.icentech.com/blog/case-study-multilingual-translation-and-information-management-supporting",
+      "tags": [
+        "Case Study",
+        "One-stop service",
+        "Professional language service provider",
+        "tailor solution",
+        "recall information management"
+      ],
+      "language": "en",
+      "body_file": "content/blog/case-study-multilingual-translation-and-information-management-supporting.html"
+    },
+    {
+      "slug": "integrating-seo-optimization-into-localized-content-creation-a",
+      "title": "Integrating SEO Optimization into Localized Content Creation: A Cross-Cultural Perspective",
+      "date": "2025年5月8日",
+      "excerpt": "In today’s hyperconnected world, businesses no longer compete on products alone—they compete on...",
+      "subtitle": "",
+      "image": "blog/integrating-seo-optimization-into-localized-content-creation-a.jpg",
+      "source_url": "https://www.icentech.com/blog/integrating-seo-optimization-into-localized-content-creation-a",
+      "tags": [
+        "Language Service Provider",
+        "Global market expansion",
+        "content translation",
+        "Localization",
+        "SEO"
+      ],
+      "language": "en",
+      "body_file": "content/blog/integrating-seo-optimization-into-localized-content-creation-a.html"
+    },
+    {
+      "slug": "don-t-let-tariffs-dictate-your-borders-let-language-expand-them",
+      "title": "Don’t let tariffs dictate your borders—let language expand them.",
+      "date": "2025年4月16日",
+      "excerpt": "The U.S. has intensified global tariffs, reshaping trade dynamics and squeezing profit margins...",
+      "subtitle": "",
+      "image": "blog/don-t-let-tariffs-dictate-your-borders-let-language-expand-them.jpg",
+      "source_url": "https://www.icentech.com/blog/don-t-let-tariffs-dictate-your-borders-let-language-expand-them",
+      "tags": [
+        "TariffResilience",
+        "ChinaMarketEntry",
+        "LocalizationMatters",
+        "Language Service Provider",
+        "Global market expansion"
+      ],
+      "language": "en",
+      "body_file": "content/blog/don-t-let-tariffs-dictate-your-borders-let-language-expand-them.html"
+    },
+    {
+      "slug": "the-strategic-role-of-translation-in-global-market-expansion",
+      "title": "The Strategic Role of Translation in Global Market Expansion",
+      "date": "2025年2月14日",
+      "excerpt": "In today's interconnected world, businesses looking to expand globally must overcome language and...",
+      "subtitle": "",
+      "image": "blog/the-strategic-role-of-translation-in-global-market-expansion.jpg",
+      "source_url": "https://www.icentech.com/blog/the-strategic-role-of-translation-in-global-market-expansion",
+      "tags": [
+        "iCentech",
+        "Professional language service provider",
+        "Global market expansion",
+        "Translation and localization",
+        "Business internationalization"
+      ],
+      "language": "en",
+      "body_file": "content/blog/the-strategic-role-of-translation-in-global-market-expansion.html"
+    },
+    {
+      "slug": "happy-new-year",
+      "title": "Happy New Year",
+      "date": "2024年12月31日",
+      "excerpt": "&nbsp;",
+      "subtitle": "",
+      "image": "blog/happy-new-year.jpg",
+      "source_url": "https://www.icentech.com/blog/happy-new-year",
+      "tags": [],
+      "language": "en",
+      "body_file": "content/blog/happy-new-year.html"
+    },
+    {
+      "slug": "how-professional-translation-services-help-clients-generate-more-revenue-and",
+      "title": "How Professional Translation Services Help Clients Generate More Revenue and Expand Their Business",
+      "date": "2024年12月6日",
+      "excerpt": "In today’s globalized economy, businesses thrive on their ability to connect with diverse...",
+      "subtitle": "",
+      "image": "blog/how-professional-translation-services-help-clients-generate-more-revenue-and.jpg",
+      "source_url": "https://www.icentech.com/blog/how-professional-translation-services-help-clients-generate-more-revenue-and",
+      "tags": [
+        "Language Service Provider",
+        "global business",
+        "translation",
+        "Localization",
+        "One-stop service"
+      ],
+      "language": "en",
+      "body_file": "content/blog/how-professional-translation-services-help-clients-generate-more-revenue-and.html"
+    },
+    {
+      "slug": "how-can-translation-companies-thrive-in-the-era-of-ai-and-rapidly-advancing",
+      "title": "How Can Translation Companies Thrive in the Era of AI and Rapidly Advancing Translation Technologies?",
+      "date": "2024年11月5日",
+      "excerpt": "I’ve been asked this question countless times whenever I mention I work for a translation company...",
+      "subtitle": "",
+      "image": "blog/how-can-translation-companies-thrive-in-the-era-of-ai-and-rapidly-advancing.jpg",
+      "source_url": "https://www.icentech.com/blog/how-can-translation-companies-thrive-in-the-era-of-ai-and-rapidly-advancing",
+      "tags": [
+        "Professional Team",
+        "AI",
+        "Language Service Provider",
+        "global business"
+      ],
+      "language": "en",
+      "body_file": "content/blog/how-can-translation-companies-thrive-in-the-era-of-ai-and-rapidly-advancing.html"
+    },
+    {
+      "slug": "streamlining-recall-translations-with-machine-assisted-solutions",
+      "title": "Streamlining Recall Translations with Machine-Assisted Solutions",
+      "date": "2024年9月14日",
+      "excerpt": "iCentech has been selected as the language service provider for collecting and translating recall...",
+      "subtitle": "",
+      "image": "blog/streamlining-recall-translations-with-machine-assisted-solutions.jpg",
+      "source_url": "https://www.icentech.com/blog/streamlining-recall-translations-with-machine-assisted-solutions",
+      "tags": [
+        "Case Study",
+        "MTPE",
+        "lang",
+        "Professional Team",
+        "tailor solution"
+      ],
+      "language": "en",
+      "body_file": "content/blog/streamlining-recall-translations-with-machine-assisted-solutions.html"
+    },
+    {
+      "slug": "2afec8aa4a6",
+      "title": "全球营销成功之道",
+      "date": "2024年7月18日",
+      "excerpt": "出海，一个绕不过去的动作就是营销。出海营销可以为企业在海外市场做好市场认知和品牌建设，吸引和转化潜在客户。很多人把营销素材称为子弹，有的时候业务还没开始，消息已经放出去了。现在很多品牌会在产品发...",
+      "subtitle": "",
+      "image": "blog/2afec8aa4a6.jpg",
+      "source_url": "https://www.icentech.com/blog/2afec8aa4a6",
+      "tags": [
+        "案例分析",
+        "出海",
+        "营销",
+        "多语言翻译",
+        "本地化"
+      ],
+      "language": "zh",
+      "body_file": "content/blog/2afec8aa4a6.html"
+    },
+    {
+      "slug": "translation-of-instruction-manuals",
+      "title": "Translation of Instruction Manuals",
+      "date": "2024年7月12日",
+      "excerpt": "Through numerous communications with our clients expanding into global markets and in our...",
+      "subtitle": "",
+      "image": "blog/translation-of-instruction-manuals.jpg",
+      "source_url": "https://www.icentech.com/blog/translation-of-instruction-manuals",
+      "tags": [
+        "global business",
+        "translation",
+        "Professional Team",
+        "Language Service Provider",
+        "multilingual"
+      ],
+      "language": "en",
+      "body_file": "content/blog/translation-of-instruction-manuals.html"
+    },
+    {
+      "slug": "81e75cf339d",
+      "title": "说明书翻译",
+      "date": "2024年6月27日",
+      "excerpt": "我们在很多次跟出海客户的沟通中以及我们的实际项目中发现如果要对翻译需求进行排序，跟产品相关的内容绝对是排在榜首的。说明书是消费者正确理解、安装、使用和维护产品的重要文档，对于消费电子、汽车、医疗...",
+      "subtitle": "",
+      "image": "blog/81e75cf339d.jpg",
+      "source_url": "https://www.icentech.com/blog/81e75cf339d",
+      "tags": [
+        "全球业务",
+        "出海",
+        "专业语言服务商",
+        "跨国业务",
+        "多语言翻译"
+      ],
+      "language": "zh",
+      "body_file": "content/blog/81e75cf339d.html"
+    },
+    {
+      "slug": "automobile-industry-translation-services",
+      "title": "Automobile Industry & Translation Services",
+      "date": "2024年6月18日",
+      "excerpt": "The automotive industry is a highly globalized and technology-intensive sector. Its complex...",
+      "subtitle": "",
+      "image": "blog/automobile-industry-translation-services.png",
+      "source_url": "https://www.icentech.com/blog/automobile-industry-translation-services",
+      "tags": [
+        "Localization",
+        "Autobile",
+        "translation",
+        "global business"
+      ],
+      "language": "en",
+      "body_file": "content/blog/automobile-industry-translation-services.html"
+    },
+    {
+      "slug": "afef605a915",
+      "title": "消费电子出海与翻译服务",
+      "date": "2024年5月28日",
+      "excerpt": "消费电子行业包括生产和销售各种电子设备和家用电器，如智能手机、平板电脑、笔记本电脑、电视、音响系统、可穿戴设备和家用电器等。这些产品已经成为现代人日常生活中不可或缺的一部分。国际上的一些消费电子...",
+      "subtitle": "",
+      "image": "blog/afef605a915.jpg",
+      "source_url": "https://www.icentech.com/blog/afef605a915",
+      "tags": [
+        "消费电子",
+        "智能手机",
+        "全球市场",
+        "跨国业务",
+        "多语言翻译"
+      ],
+      "language": "zh",
+      "body_file": "content/blog/afef605a915.html"
+    },
+    {
+      "slug": "internal-translators-vs-professional-language-service-providers-the",
+      "title": "Internal Translators vs Professional Language Service Providers: The Difficult Choice",
+      "date": "2024年4月9日",
+      "excerpt": "In today's globalized business landscape, multinational and international corporations are...",
+      "subtitle": "",
+      "image": "blog/internal-translators-vs-professional-language-service-providers-the.jpg",
+      "source_url": "https://www.icentech.com/blog/internal-translators-vs-professional-language-service-providers-the",
+      "tags": [
+        "Translation vendor",
+        "Localization",
+        "global business",
+        "translation",
+        "Professional Team"
+      ],
+      "language": "en",
+      "body_file": "content/blog/internal-translators-vs-professional-language-service-providers-the.html"
+    },
+    {
+      "slug": "vs",
+      "title": "内部翻译人员 vs 专业语言服务供应商：管理者的艰难抉择",
+      "date": "2024年4月8日",
+      "excerpt": "在今天全球化的商业环境中，跨国企业和国际化企业必须面对一个重要的决定：是选择拥有内部翻译人员，还是借助专业语言服务供应商来满足翻译需求？这两种选择各有优劣，但随着全球业务的不断扩张和发展，越来越...",
+      "subtitle": "",
+      "image": "blog/vs.jpg",
+      "source_url": "https://www.icentech.com/blog/vs",
+      "tags": [
+        "出海",
+        "翻译",
+        "专业语言服务商",
+        "效费比"
+      ],
+      "language": "zh",
+      "body_file": "content/blog/vs.html"
+    },
+    {
+      "slug": "expending-global-business-you-need-a-reliable-multilingual-parter",
+      "title": "Expending Global Business? You need a reliable multilingual parter.",
+      "date": "2024年3月1日",
+      "excerpt": "In today's globalized era, establishing a foothold and achieving success in international markets...",
+      "subtitle": "",
+      "image": "blog/expending-global-business-you-need-a-reliable-multilingual-parter.jpg",
+      "source_url": "https://www.icentech.com/blog/expending-global-business-you-need-a-reliable-multilingual-parter",
+      "tags": [
+        "global business",
+        "Language Service Provider",
+        "multilingual",
+        "Translation vendor"
+      ],
+      "language": "en",
+      "body_file": "content/blog/expending-global-business-you-need-a-reliable-multilingual-parter.html"
+    },
+    {
+      "slug": "6787b90f3c2",
+      "title": "拓展全球市场：你需要一个多语种语言服务商",
+      "date": "2024年2月27日",
+      "excerpt": "在当今全球化的时代，企业要想在国际市场上立足并获得成功，多语种语言服务成为了不可或缺的一环。一家可以提供多语种支持的语言服务合作伙伴，对企业在出海过程中起着至关重要的作用。本文将从多个角度探讨多...",
+      "subtitle": "",
+      "image": "blog/6787b90f3c2.jpg",
+      "source_url": "https://www.icentech.com/blog/6787b90f3c2",
+      "tags": [
+        "multilingual",
+        "出海",
+        "专业语言服务商",
+        "多语种",
+        "全球业务"
+      ],
+      "language": "zh",
+      "body_file": "content/blog/6787b90f3c2.html"
+    }
+  ]
+}

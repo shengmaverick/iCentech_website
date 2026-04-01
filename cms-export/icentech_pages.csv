@@ -1,0 +1,19 @@
+slug,title_zh,title_en,summary_zh,summary_en,status,template
+/,让全球用户真正读懂你的产品,Make Your Product Truly Understood Worldwide,iCentech 将专业语言服务、工程能力与 AI 工作流结合，帮助企业更快上线多语内容，稳定拓展海外市场。,"iCentech combines expert language services, engineering capability, and AI workflows to help businesses launch multilingual content faster and scale internationally with confidence.",draft,default-bilingual-page
+/translation,翻译服务,Translation,覆盖软件、文档、网站、法律及营销内容，提供术语管理、审校、后编辑与质量评估。,"Covers software, documents, websites, legal and marketing content with terminology management, review, post-editing, and quality evaluation.",draft,default-bilingual-page
+/dtp,DTP 排版,DTP,多语种排版与文件工程，兼顾视觉一致性与语言适配。,Multilingual desktop publishing and file engineering with visual consistency and language adaptation.,draft,default-bilingual-page
+/engineering,国际化工程,Engineering,提供 I18N 工程支持、代码适配、构建与系统集成。,"Provides I18N engineering support, code adaptation, build, and integration.",draft,default-bilingual-page
+/testing,本地化测试,Testing,平台兼容、区域数据处理验证与本地化体验验证。,"Platform compatibility, regional data handling verification, and localization experience validation.",draft,default-bilingual-page
+/video-production,多语视频制作,Video Production,从转写、翻译到字幕、配音与同步的一体化交付。,"End-to-end delivery from transcription and translation to subtitling, dubbing, and synchronization.",draft,default-bilingual-page
+/interpreting,口译服务,Interpreting,支持会议、医疗、政务、媒体发布等多场景口译。,"Interpreting for conferences, healthcare, public sector, and media events.",draft,default-bilingual-page
+/document-localization,文档本地化,Document Localization,文档翻译、排版、质检和发布一体化流程。,"Integrated workflow for document translation, DTP, QA, and publishing.",draft,default-bilingual-page
+/website-localization,网站本地化,Website Localization,支持静态站点、动态门户和富媒体网站本地化。,"Supports localization for static sites, dynamic portals, and rich media websites.",draft,default-bilingual-page
+/apps-localization,软件与应用本地化,Apps Localization,覆盖 GUI、帮助系统、文档与构建集成的多语发布。,"Covers GUI, help content, documentation, and build integration for multilingual releases.",draft,default-bilingual-page
+/multimedia-localization,多媒体本地化,Multimedia Localization,包含转写、翻译、配音、字幕与音视频同步。,"Includes transcription, translation, dubbing, subtitling, and AV synchronization.",draft,default-bilingual-page
+/elearning-localization,eLearning 本地化,eLearning Localization,支持课程内容、交互课件和学习平台本地化。,"Supports localization for course content, interactive training assets, and learning platforms.",draft,default-bilingual-page
+/technology,技术能力,Technology,TM、CAT、QA 工具与自动化流程协同驱动高效交付。,"TM, CAT, QA tools, and automation workflows drive efficient delivery.",draft,default-bilingual-page
+/ai,AI 语言解决方案,AI-Driven Language Solutions,NMT + 人工后编辑、AI 质检、会议实时转写与字幕。,"NMT + human post-editing, AI quality checks, and real-time conference transcription.",draft,default-bilingual-page
+/company,公司介绍,Company,以质量为先、流程驱动、技术提效，支持 100+ 语言交付。,"Quality-first, process-driven, technology-enabled delivery across 100+ languages.",draft,default-bilingual-page
+/news-blog,新闻与博客,News & Blog,行业洞察、案例实践、标准与合规动态。,"Industry insights, case practices, and standards/compliance updates.",draft,default-bilingual-page
+/career,加入我们,Career,欢迎加入语言服务、项目管理、工程与质量团队。,"Join our language, project management, engineering, and QA teams.",draft,default-bilingual-page
+/freelance,自由职业合作,Freelance,欢迎译员、审校、配音与语言技术人才加入合作网络。,"Freelance linguists, reviewers, voice talents, and language-tech specialists are welcome.",draft,default-bilingual-page

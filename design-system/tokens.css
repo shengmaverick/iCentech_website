@@ -1,0 +1,22 @@
+:root {
+  --font-body: "Inter", "Noto Sans SC", "Helvetica Neue", Arial, sans-serif;
+  --font-heading: "Space Grotesk", "Noto Sans SC", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "IBM Plex Mono", "SFMono-Regular", "Consolas", monospace;
+  --brand-blue-700: #0c79d6;
+  --brand-blue-500: #0596ef;
+  --brand-blue-300: #8fd0ff;
+  --brand-green-600: #63a60b;
+  --brand-green-500: #78c515;
+  --brand-green-200: #dff3b8;
+  --bg-950: #061119;
+  --bg-900: #0a1824;
+  --bg-860: #102334;
+  --bg-820: #13293d;
+  --ink: #eff8ff;
+  --ink-soft: #a8c3d8;
+  --line: rgba(143, 208, 255, 0.16);
+  --line-strong: rgba(143, 208, 255, 0.26);
+  --mist: rgba(143, 208, 255, 0.08);
+  --surface: rgba(14, 28, 41, 0.9);
+  --surface-alt: rgba(18, 39, 57, 0.8);
+}

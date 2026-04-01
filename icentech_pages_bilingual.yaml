@@ -1,0 +1,218 @@
+site:
+  brand: iCentech
+  domain: https://www.icentech.com
+  language: [zh-CN, en]
+  navigation:
+    - key: home
+      label_zh: 首页
+      label_en: Home
+    - key: services
+      label_zh: 服务
+      label_en: Services
+      children: [translation, dtp, engineering, testing, video-production, interpreting]
+    - key: localization
+      label_zh: 本地化
+      label_en: Localization
+      children: [document, website, apps, multimedia, elearning]
+    - key: technology
+      label_zh: 技术
+      label_en: Technology
+      children: [technology-core, ai]
+    - key: about-us
+      label_zh: 关于我们
+      label_en: About Us
+      children: [company, news-blog, career, freelance]
+
+pages:
+  - slug: /
+    key: home
+    seo_title_zh: iCentech | 帮助品牌走向全球
+    seo_title_en: iCentech | We Help Brands Go Global
+    hero_zh: 帮助品牌走向全球，驱动国际化增长。
+    hero_en: We help brands go global and drive international growth.
+    intro_zh: iCentech 通过语言服务、本地化工程和 AI 赋能流程，让您的产品、内容与服务更快进入目标市场。
+    intro_en: Through language services, localization engineering, and AI-enabled workflows, iCentech helps your products, content, and services reach target markets faster.
+    cta_zh: 联系我们
+    cta_en: Get in Touch
+
+  - slug: /translation
+    key: translation
+    title_zh: 翻译服务
+    title_en: Translation
+    summary_zh: 覆盖软件、文档、网站、法律及营销内容，提供术语管理、审校、后编辑与质量评估。
+    summary_en: Covers software, documents, websites, legal and marketing content with terminology management, review, post-editing, and quality evaluation.
+    deliverables_zh:
+      - 文本翻译与本地化
+      - 术语库与风格指南
+      - 审校与语言测试
+      - 机器翻译后编辑
+    deliverables_en:
+      - Translation and localization
+      - Terminology base and style guide
+      - Review and linguistic testing
+      - MT post-editing
+
+  - slug: /dtp
+    key: dtp
+    title_zh: DTP 排版
+    title_en: DTP
+    summary_zh: 多语种排版与文件工程，兼顾视觉一致性与语言适配。
+    summary_en: Multilingual desktop publishing and file engineering with visual consistency and language adaptation.
+
+  - slug: /engineering
+    key: engineering
+    title_zh: 国际化工程
+    title_en: Engineering
+    summary_zh: 提供 I18N 工程支持、代码适配、构建与系统集成。
+    summary_en: Provides I18N engineering support, code adaptation, build, and integration.
+
+  - slug: /testing
+    key: testing
+    title_zh: 本地化测试
+    title_en: Testing
+    summary_zh: 平台兼容、区域数据处理验证与本地化体验验证。
+    summary_en: Platform compatibility, regional data handling verification, and localization experience validation.
+
+  - slug: /video-production
+    key: video-production
+    title_zh: 多语视频制作
+    title_en: Video Production
+    summary_zh: 从转写、翻译到字幕、配音与同步的一体化交付。
+    summary_en: End-to-end delivery from transcription and translation to subtitling, dubbing, and synchronization.
+
+  - slug: /interpreting
+    key: interpreting
+    title_zh: 口译服务
+    title_en: Interpreting
+    summary_zh: 支持会议、医疗、政务、媒体发布等多场景口译。
+    summary_en: Interpreting for conferences, healthcare, public sector, and media events.
+
+  - slug: /document
+    key: document
+    title_zh: 文档本地化
+    title_en: Document Localization
+    workflow:
+      - Evaluation
+      - Process Definition
+      - TM & Terminology Setup
+      - Pre-processing
+      - Translation
+      - Post-processing
+      - DTP
+      - DTP QA
+      - Publishing
+
+  - slug: /website
+    key: website
+    title_zh: 网站本地化
+    title_en: Website Localization
+    workflow:
+      - Evaluation
+      - Process Definition
+      - TM & Terminology Setup
+      - Pre-processing
+      - Content Translation
+      - Post-processing
+      - Integration
+      - Quality Assurance
+
+  - slug: /apps
+    key: apps
+    title_zh: 软件/应用本地化
+    title_en: Apps Localization
+    workflow:
+      - Evaluation
+      - Process Definition
+      - TM & Terminology Setup
+      - Pre-processing
+      - Translation/Localization
+      - Post-processing
+      - Recompile/Integration
+      - Quality Assurance
+
+  - slug: /multimedia
+    key: multimedia
+    title_zh: 多媒体本地化
+    title_en: Multimedia Localization
+    workflow:
+      - Evaluation
+      - Process Definition
+      - TM & Terminology Setup
+      - Preparation
+      - Content Translation
+      - Multimedia Creation
+      - Post-processing
+      - Integration/Rebuild
+      - Quality Assurance
+
+  - slug: /elearning
+    key: elearning
+    title_zh: eLearning 本地化
+    title_en: eLearning Localization
+    workflow:
+      - Evaluation
+      - Process Definition
+      - TM & Terminology Setup
+      - Preparation
+      - Content Translation
+      - Post-processing
+      - Integration/Rebuild
+      - Quality Assurance
+
+  - slug: /technology
+    key: technology-core
+    title_zh: 技术能力
+    title_en: Technology
+    highlights_zh:
+      - 翻译记忆库（TM）
+      - CAT 工具协同
+      - DTP 工具链
+      - 项目管理系统
+      - QA 工具与自动化
+    highlights_en:
+      - Translation Memory
+      - CAT tool collaboration
+      - DTP toolchain
+      - Project management system
+      - QA tools and automation
+
+  - slug: /ai
+    key: ai
+    title_zh: AI 语言解决方案
+    title_en: AI-Driven Language Solutions
+    highlights_zh:
+      - NMT + 人工后编辑
+      - AI 质量检查
+      - 会议场景实时转写与字幕
+    highlights_en:
+      - NMT + human post-editing
+      - AI-powered quality checks
+      - Real-time transcription and subtitling for events
+
+  - slug: /company
+    key: company
+    title_zh: 公司介绍
+    title_en: Company
+    summary_zh: 以质量为先、流程驱动、技术提效，支持 100+ 语言服务交付。
+    summary_en: Quality-first, process-driven, technology-enabled delivery across 100+ languages.
+
+  - slug: /news-and-blog
+    key: news-blog
+    title_zh: 新闻与博客
+    title_en: News & Blog
+    summary_zh: 行业洞察、案例实践、标准与合规动态。
+    summary_en: Industry insights, case practices, and standards/compliance updates.
+
+  - slug: /career
+    key: career
+    title_zh: 加入我们
+    title_en: Career
+    summary_zh: 欢迎加入语言服务、项目管理、工程与质量团队。
+    summary_en: Join our language, project management, engineering, and QA teams.
+
+  - slug: /freelance
+    key: freelance
+    title_zh: 自由职业合作
+    title_en: Freelance
+    summary_zh: 欢迎译员、审校、配音与语言技术人才加入合作网络。
+    summary_en: Freelance linguists, reviewers, voice talents, and language-tech specialists are welcome.

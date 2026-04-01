@@ -1,0 +1,152 @@
+{
+  "brand": "iCentech",
+  "domain": "https://www.icentech.com",
+  "navigation": [
+    { "key": "home", "label_zh": "首页", "label_en": "Home", "slug": "" },
+    { "key": "translation", "label_zh": "翻译服务", "label_en": "Translation", "slug": "translation" },
+    { "key": "dtp", "label_zh": "DTP 排版", "label_en": "DTP", "slug": "dtp" },
+    { "key": "engineering", "label_zh": "国际化工程", "label_en": "Engineering", "slug": "engineering" },
+    { "key": "testing", "label_zh": "本地化测试", "label_en": "Testing", "slug": "testing" },
+    { "key": "video-production", "label_zh": "多语视频制作", "label_en": "Video Production", "slug": "video-production" },
+    { "key": "interpreting", "label_zh": "口译服务", "label_en": "Interpreting", "slug": "interpreting" },
+    { "key": "document-localization", "label_zh": "文档本地化", "label_en": "Document Localization", "slug": "document-localization" },
+    { "key": "website-localization", "label_zh": "网站本地化", "label_en": "Website Localization", "slug": "website-localization" },
+    { "key": "apps-localization", "label_zh": "软件/应用本地化", "label_en": "Apps Localization", "slug": "apps-localization" },
+    { "key": "multimedia-localization", "label_zh": "多媒体本地化", "label_en": "Multimedia Localization", "slug": "multimedia-localization" },
+    { "key": "elearning-localization", "label_zh": "eLearning 本地化", "label_en": "eLearning Localization", "slug": "elearning-localization" },
+    { "key": "technology", "label_zh": "技术能力", "label_en": "Technology", "slug": "technology" },
+    { "key": "ai", "label_zh": "AI 语言解决方案", "label_en": "AI", "slug": "ai" },
+    { "key": "company", "label_zh": "公司介绍", "label_en": "Company", "slug": "company" },
+    { "key": "news-blog", "label_zh": "新闻与博客", "label_en": "News & Blog", "slug": "news-blog" },
+    { "key": "career", "label_zh": "加入我们", "label_en": "Career", "slug": "career" },
+    { "key": "freelance", "label_zh": "自由职业合作", "label_en": "Freelance", "slug": "freelance" }
+  ],
+  "pages": [
+    {
+      "slug": "",
+      "title_zh": "让全球用户真正读懂你的产品",
+      "title_en": "Make Your Product Truly Understood Worldwide",
+      "summary_zh": "iCentech 将专业语言服务、工程能力与 AI 工作流结合，帮助企业更快上线多语内容，稳定拓展海外市场。",
+      "summary_en": "iCentech combines expert language services, engineering capability, and AI workflows to help businesses launch multilingual content faster and scale internationally with confidence."
+    },
+    {
+      "slug": "translation",
+      "title_zh": "翻译服务",
+      "title_en": "Translation",
+      "summary_zh": "覆盖软件、文档、网站、法律及营销内容，提供术语管理、审校、后编辑与质量评估。",
+      "summary_en": "Covers software, documents, websites, legal and marketing content with terminology management, review, post-editing, and quality evaluation."
+    },
+    {
+      "slug": "dtp",
+      "title_zh": "DTP 排版",
+      "title_en": "DTP",
+      "summary_zh": "多语种排版与文件工程，兼顾视觉一致性与语言适配。",
+      "summary_en": "Multilingual desktop publishing and file engineering with visual consistency and language adaptation."
+    },
+    {
+      "slug": "engineering",
+      "title_zh": "国际化工程",
+      "title_en": "Engineering",
+      "summary_zh": "提供 I18N 工程支持、代码适配、构建与系统集成。",
+      "summary_en": "Provides I18N engineering support, code adaptation, build, and integration."
+    },
+    {
+      "slug": "testing",
+      "title_zh": "本地化测试",
+      "title_en": "Testing",
+      "summary_zh": "平台兼容、区域数据处理验证与本地化体验验证。",
+      "summary_en": "Platform compatibility, regional data handling verification, and localization experience validation."
+    },
+    {
+      "slug": "video-production",
+      "title_zh": "多语视频制作",
+      "title_en": "Video Production",
+      "summary_zh": "从转写、翻译到字幕、配音与同步的一体化交付。",
+      "summary_en": "End-to-end delivery from transcription and translation to subtitling, dubbing, and synchronization."
+    },
+    {
+      "slug": "interpreting",
+      "title_zh": "口译服务",
+      "title_en": "Interpreting",
+      "summary_zh": "支持会议、医疗、政务、媒体发布等多场景口译。",
+      "summary_en": "Interpreting for conferences, healthcare, public sector, and media events."
+    },
+    {
+      "slug": "document-localization",
+      "title_zh": "文档本地化",
+      "title_en": "Document Localization",
+      "summary_zh": "文档翻译、排版、质检和发布一体化流程。",
+      "summary_en": "Integrated workflow for document translation, DTP, QA, and publishing."
+    },
+    {
+      "slug": "website-localization",
+      "title_zh": "网站本地化",
+      "title_en": "Website Localization",
+      "summary_zh": "支持静态站点、动态门户和富媒体网站本地化。",
+      "summary_en": "Supports localization for static sites, dynamic portals, and rich media websites."
+    },
+    {
+      "slug": "apps-localization",
+      "title_zh": "软件与应用本地化",
+      "title_en": "Apps Localization",
+      "summary_zh": "覆盖 GUI、帮助系统、文档与构建集成的多语发布。",
+      "summary_en": "Covers GUI, help content, documentation, and build integration for multilingual releases."
+    },
+    {
+      "slug": "multimedia-localization",
+      "title_zh": "多媒体本地化",
+      "title_en": "Multimedia Localization",
+      "summary_zh": "包含转写、翻译、配音、字幕与音视频同步。",
+      "summary_en": "Includes transcription, translation, dubbing, subtitling, and AV synchronization."
+    },
+    {
+      "slug": "elearning-localization",
+      "title_zh": "eLearning 本地化",
+      "title_en": "eLearning Localization",
+      "summary_zh": "支持课程内容、交互课件和学习平台本地化。",
+      "summary_en": "Supports localization for course content, interactive training assets, and learning platforms."
+    },
+    {
+      "slug": "technology",
+      "title_zh": "技术能力",
+      "title_en": "Technology",
+      "summary_zh": "TM、CAT、QA 工具与自动化流程协同驱动高效交付。",
+      "summary_en": "TM, CAT, QA tools, and automation workflows drive efficient delivery."
+    },
+    {
+      "slug": "ai",
+      "title_zh": "AI 语言解决方案",
+      "title_en": "AI-Driven Language Solutions",
+      "summary_zh": "NMT + 人工后编辑、AI 质检、会议实时转写与字幕。",
+      "summary_en": "NMT + human post-editing, AI quality checks, and real-time conference transcription."
+    },
+    {
+      "slug": "company",
+      "title_zh": "公司介绍",
+      "title_en": "Company",
+      "summary_zh": "以质量为先、流程驱动、技术提效，支持 100+ 语言交付。",
+      "summary_en": "Quality-first, process-driven, technology-enabled delivery across 100+ languages."
+    },
+    {
+      "slug": "news-blog",
+      "title_zh": "新闻与博客",
+      "title_en": "News & Blog",
+      "summary_zh": "行业洞察、案例实践、标准与合规动态。",
+      "summary_en": "Industry insights, case practices, and standards/compliance updates."
+    },
+    {
+      "slug": "career",
+      "title_zh": "加入我们",
+      "title_en": "Career",
+      "summary_zh": "欢迎加入语言服务、项目管理、工程与质量团队。",
+      "summary_en": "Join our language, project management, engineering, and QA teams."
+    },
+    {
+      "slug": "freelance",
+      "title_zh": "自由职业合作",
+      "title_en": "Freelance",
+      "summary_zh": "欢迎译员、审校、配音与语言技术人才加入合作网络。",
+      "summary_en": "Freelance linguists, reviewers, voice talents, and language-tech specialists are welcome."
+    }
+  ]
+}
