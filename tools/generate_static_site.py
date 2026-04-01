@@ -1,9 +1,11 @@
 import html
 import json
+import os
 import re
 import shutil
 from pathlib import Path
 from textwrap import dedent
+from urllib.parse import urlsplit
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA_FILE = ROOT / "content" / "site-content.json"
@@ -15,6 +17,23 @@ ASSETS_DIR = OUT_DIR / "assets"
 DESIGN_DIR = ROOT / "design-system"
 LOGO_SOURCE = ROOT / "brand" / "icentech-logo-horizontal.png"
 LOGO_ASSET_NAME = "icentech-logo-horizontal.png"
+DEFAULT_SITE_ORIGIN = "https://www.icentech.com"
+
+
+def normalize_base_path(value):
+    cleaned = (value or "").strip()
+    if not cleaned or cleaned == "/":
+        return ""
+    return "/" + cleaned.strip("/")
+
+
+SITE_ORIGIN_OVERRIDE = os.environ.get("SITE_ORIGIN", "").strip().rstrip("/")
+SITE_BASE_PATH = normalize_base_path(os.environ.get("SITE_BASE_PATH", ""))
+LEGACY_ROUTE_ALIASES = {
+    "blog/case-study-elevating-global-expansion-with-icentech-s-flexible-localization": (
+        "blog/case-study-multilingual-translation-and-information-management-supporting"
+    ),
+}
 
 BRAND_TOKENS = {
     "brand_blue_700": "#0c79d6",
@@ -680,9 +699,38 @@ def page_asset_basename(slug):
     return "home" if slug == "" else slug
 
 
+def site_origin(data):
+    configured = SITE_ORIGIN_OVERRIDE or data.get("domain") or DEFAULT_SITE_ORIGIN
+    return configured.rstrip("/")
+
+
+def site_path(path=""):
+    suffix = "/" if not path else "/" + path.lstrip("/")
+    return f"{SITE_BASE_PATH}{suffix}" if SITE_BASE_PATH else suffix
+
+
+def absolute_site_url(data, path=""):
+    if path.startswith(("http://", "https://")):
+        return path
+    return f"{site_origin(data)}{path if path.startswith('/') else site_path(path)}"
+
+
+def asset_href(asset_path):
+    cleaned = asset_path.lstrip("/")
+    if not cleaned.startswith("assets/"):
+        cleaned = f"assets/{cleaned}"
+    return site_path(cleaned)
+
+
+def absolute_asset_url(data, asset_path):
+    if asset_path.startswith(("http://", "https://")):
+        return asset_path
+    return f"{site_origin(data)}{asset_href(asset_path)}"
+
+
 def page_href(lang, slug):
-    prefix = "/zh" if lang == "zh" else "/en"
-    return f"{prefix}/{page_filename(slug)}"
+    prefix = "zh" if lang == "zh" else "en"
+    return site_path(f"{prefix}/{page_filename(slug)}")
 
 
 def get_page_detail(page, lang):
@@ -698,12 +746,84 @@ def build_meta_description(page, lang):
     return page["summary_zh"] if lang == "zh" else page["summary_en"]
 
 
-def load_blog_posts():
+def normalize_route_slug(path):
+    value = (path or "").strip("/")
+    if not value:
+        return ""
+    if value in {"en", "zh"}:
+        return ""
+    parts = value.split("/")
+    if parts[0] in {"en", "zh"}:
+        value = "/".join(parts[1:])
+    if value.endswith("/index.html"):
+        value = value[: -len("/index.html")]
+    elif value in {"index", "index.html"}:
+        return ""
+    elif value.endswith(".html"):
+        value = value[:-5]
+    return value.strip("/")
+
+
+def rewrite_internal_url(url, lang, data, page_slugs, blog_slugs):
+    if not url or url.startswith(("#", "mailto:", "tel:", "javascript:")):
+        return url
+
+    parsed = urlsplit(url)
+    current_domain = urlsplit(data.get("domain") or DEFAULT_SITE_ORIGIN).netloc.lower()
+    allowed_hosts = {host for host in {current_domain, "www.icentech.com", "icentech.com"} if host}
+    is_internal_absolute = parsed.scheme in {"http", "https"} and parsed.netloc.lower() in allowed_hosts
+    is_site_relative = not parsed.scheme and not parsed.netloc and parsed.path.startswith("/")
+    if not (is_internal_absolute or is_site_relative):
+        return url
+
+    normalized = normalize_route_slug(parsed.path)
+    normalized = LEGACY_ROUTE_ALIASES.get(normalized, normalized)
+    rewritten = None
+    if not normalized:
+        rewritten = page_href(lang, "")
+    elif normalized in {"news-and-blog", "news-blog"}:
+        rewritten = page_href(lang, "news-blog")
+    elif normalized.startswith("blog/"):
+        slug = normalized.split("/", 1)[1]
+        if slug in blog_slugs:
+            rewritten = blog_href(lang, slug)
+    elif normalized in page_slugs:
+        rewritten = page_href(lang, normalized)
+
+    if not rewritten:
+        return url
+
+    query = f"?{parsed.query}" if parsed.query else ""
+    fragment = f"#{parsed.fragment}" if parsed.fragment else ""
+    return f"{rewritten}{query}{fragment}"
+
+
+def rewrite_internal_links(body_html, lang, data, page_slugs, blog_slugs):
+    def replace_url(match):
+        attribute = match.group(1)
+        value = match.group(2)
+        rewritten = rewrite_internal_url(value, lang, data, page_slugs, blog_slugs)
+        return f'{attribute}="{rewritten}"'
+
+    return re.sub(r'(href|src)="([^"]+)"', replace_url, body_html)
+
+
+def resolve_media_url(value):
+    if not value:
+        return ""
+    if value.startswith(("http://", "https://")):
+        return value
+    return asset_href(value)
+
+
+def load_blog_posts(data):
     if not BLOG_DATA_FILE.exists():
         return []
     with open(BLOG_DATA_FILE, "r", encoding="utf-8") as file:
         payload = json.load(file)
     posts = payload.get("posts", [])
+    page_slugs = {page["slug"] for page in data["pages"]}
+    blog_slugs = {post.get("slug", "") for post in posts}
     hydrated = []
     for post in posts:
         item = dict(post)
@@ -715,19 +835,20 @@ def load_blog_posts():
             item["body_html"] = item.get("body_html", "").strip()
 
         image = item.get("image", "")
-        if image and not image.startswith(("http://", "https://", "/assets/")):
-            item["image_url"] = f"/assets/{image.lstrip('/')}"
-        else:
-            item["image_url"] = image
+        item["image_url"] = resolve_media_url(image)
         excerpt = html.unescape((item.get("excerpt") or "").replace("\xa0", " ")).strip()
         item["excerpt"] = excerpt if excerpt else excerpt_from_body(item["body_html"])
+        item["body_html_by_lang"] = {
+            lang: rewrite_internal_links(item["body_html"], lang, data, page_slugs, blog_slugs)
+            for lang in ("en", "zh")
+        }
         hydrated.append(item)
     return hydrated
 
 
 def blog_href(lang, slug):
-    prefix = "/zh/blog" if lang == "zh" else "/en/blog"
-    return f"{prefix}/{slug}.html"
+    prefix = "zh/blog" if lang == "zh" else "en/blog"
+    return site_path(f"{prefix}/{slug}.html")
 
 
 def excerpt_from_body(body_html):
@@ -803,7 +924,7 @@ def render_nav(page, lang):
 def render_brand(lang):
     logo_path = ASSETS_DIR / LOGO_ASSET_NAME
     logo_html = (
-        f'<img class="brand-logo" src="/assets/{LOGO_ASSET_NAME}" alt="iCentech logo">'
+        f'<img class="brand-logo" src="{asset_href(LOGO_ASSET_NAME)}" alt="iCentech logo">'
         if logo_path.exists()
         else '<span class="brand-mark brand-mark-fallback" aria-hidden="true">i</span>'
     )
@@ -1144,11 +1265,11 @@ def render_home(page, lang, data):
     """
 
 
-def render_news_blog_page(page, lang):
+def render_news_blog_page(page, lang, data):
     detail = get_page_detail(page, lang)
     title = page["title_zh"] if lang == "zh" else page["title_en"]
     summary = page["summary_zh"] if lang == "zh" else page["summary_en"]
-    posts = load_blog_posts()
+    posts = load_blog_posts(data)
     post_count = str(len(posts))
     latest_date = posts[0]["date"] if posts else ("2026" if lang == "en" else "2026")
     management_cards = [
@@ -1250,8 +1371,8 @@ def render_news_blog_page(page, lang):
     """
 
 
-def render_blog_post_page(page, post, lang):
-    sibling_posts = [item for item in load_blog_posts() if item["slug"] != post["slug"]][:3]
+def render_blog_post_page(page, post, lang, data):
+    sibling_posts = [item for item in load_blog_posts(data) if item["slug"] != post["slug"]][:3]
     title = post["title"]
     subtitle = post.get("subtitle", "")
     excerpt = post.get("excerpt") or excerpt_from_body(post.get("body_html", ""))
@@ -1285,7 +1406,7 @@ def render_blog_post_page(page, post, lang):
       <article class="panel post-panel">
         <span class="section-kicker">{'正文' if lang == 'zh' else 'Article'}</span>
         <div class="post-content">
-          {post.get('body_html', '')}
+          {post.get('body_html_by_lang', {}).get(lang, post.get('body_html', ''))}
         </div>
       </article>
       <aside class="stack-grid">
@@ -1317,7 +1438,7 @@ def render_blog_post_page(page, post, lang):
 
 def render_inner_page(page, lang, data):
     if page["slug"] == "news-blog":
-        return render_news_blog_page(page, lang)
+        return render_news_blog_page(page, lang, data)
 
     detail = get_page_detail(page, lang)
     title = page["title_zh"] if lang == "zh" else page["title_en"]
@@ -1385,7 +1506,7 @@ def render_inner_page(page, lang, data):
     """
 
 
-def build_schema(page, lang):
+def build_schema(data, page, lang):
     title = page["title_zh"] if lang == "zh" else page["title_en"]
     description = build_meta_description(page, lang)
     service_schema = {
@@ -1393,22 +1514,23 @@ def build_schema(page, lang):
         "@type": "Service" if page["slug"] else "Organization",
         "name": title if page["slug"] else "iCentech",
         "description": description,
-        "url": f"https://www.icentech.com/{page['slug']}" if page["slug"] else "https://www.icentech.com/",
+        "url": absolute_site_url(data, page_href(lang, page["slug"])),
     }
     if page["slug"]:
         service_schema["provider"] = {"@type": "Organization", "name": "iCentech"}
     return json.dumps(service_schema, ensure_ascii=False)
 
 
-def build_blog_schema(post):
+def build_blog_schema(data, post, lang):
     return json.dumps(
         {
             "@context": "https://schema.org",
             "@type": "BlogPosting",
             "headline": post["title"],
             "description": post.get("excerpt") or excerpt_from_body(post.get("body_html", "")),
-            "image": post.get("image_url", ""),
+            "image": absolute_asset_url(data, post.get("image", "")),
             "datePublished": post.get("date", ""),
+            "url": absolute_site_url(data, blog_href(lang, post["slug"])),
             "publisher": {"@type": "Organization", "name": "iCentech"},
         },
         ensure_ascii=False,
@@ -1419,6 +1541,8 @@ def render_page(data, page, lang):
     title = page["title_zh"] if lang == "zh" else page["title_en"]
     description = build_meta_description(page, lang)
     body_content = render_home(page, lang, data) if page["slug"] == "" else render_inner_page(page, lang, data)
+    page_url = absolute_site_url(data, page_href(lang, page["slug"]))
+    og_image = absolute_asset_url(data, f"{page_asset_basename(page['slug'])}-{lang}.svg")
     return f"""<!doctype html>
 <html lang="{lang}">
 <head>
@@ -1430,14 +1554,15 @@ def render_page(data, page, lang):
   <meta property="og:title" content="{html.escape(title)} | iCentech">
   <meta property="og:description" content="{html.escape(description)}">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://www.icentech.com/{page['slug']}">
-  <meta property="og:image" content="/assets/{page_asset_basename(page['slug'])}-{lang}.svg">
+  <meta property="og:url" content="{html.escape(page_url)}">
+  <meta property="og:image" content="{html.escape(og_image)}">
+  <link rel="canonical" href="{html.escape(page_url)}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/site.css">
+  <link rel="stylesheet" href="{asset_href('site.css')}">
   <script>{THEME_INIT_SCRIPT}</script>
-  <script type="application/ld+json">{build_schema(page, lang)}</script>
+  <script type="application/ld+json">{build_schema(data, page, lang)}</script>
 </head>
 <body>
   <a class="skip-link" href="#main-content">{'跳到正文' if lang == 'zh' else 'Skip to content'}</a>
@@ -1472,6 +1597,8 @@ def render_page(data, page, lang):
 def render_blog_detail_document(data, page, post, lang):
     title = post["title"]
     description = post.get("excerpt") or excerpt_from_body(post.get("body_html", ""))
+    post_url = absolute_site_url(data, blog_href(lang, post["slug"]))
+    post_image = absolute_asset_url(data, post.get("image", ""))
     return f"""<!doctype html>
 <html lang="{lang}">
 <head>
@@ -1483,14 +1610,15 @@ def render_blog_detail_document(data, page, post, lang):
   <meta property="og:title" content="{html.escape(title)} | iCentech">
   <meta property="og:description" content="{html.escape(description)}">
   <meta property="og:type" content="article">
-  <meta property="og:url" content="https://www.icentech.com/blog/{post['slug']}">
-  <meta property="og:image" content="{html.escape(post.get('image_url', ''))}">
+  <meta property="og:url" content="{html.escape(post_url)}">
+  <meta property="og:image" content="{html.escape(post_image)}">
+  <link rel="canonical" href="{html.escape(post_url)}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/site.css">
+  <link rel="stylesheet" href="{asset_href('site.css')}">
   <script>{THEME_INIT_SCRIPT}</script>
-  <script type="application/ld+json">{build_blog_schema(post)}</script>
+  <script type="application/ld+json">{build_blog_schema(data, post, lang)}</script>
 </head>
 <body>
   <a class="skip-link" href="#main-content">{'跳到正文' if lang == 'zh' else 'Skip to content'}</a>
@@ -1508,7 +1636,7 @@ def render_blog_detail_document(data, page, post, lang):
   </header>
   <main id="main-content" class="main-shell">
     {render_blog_breadcrumbs(page, post, lang)}
-    {render_blog_post_page(page, post, lang)}
+    {render_blog_post_page(page, post, lang, data)}
   </main>
   <footer class="site-footer">
     <div class="footer-inner">
@@ -2984,6 +3112,7 @@ def write_brand_assets(data):
 def main():
     with open(DATA_FILE, "r", encoding="utf-8") as file:
         data = json.load(file)
+    blog_posts = load_blog_posts(data)
 
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     write_brand_assets(data)
@@ -3004,7 +3133,7 @@ def main():
 
     blog_page = next((page for page in data["pages"] if page["slug"] == "news-blog"), None)
     if blog_page:
-        for post in load_blog_posts():
+        for post in blog_posts:
             (en_blog_dir / f"{post['slug']}.html").write_text(
                 render_blog_detail_document(data, blog_page, post, "en"),
                 encoding="utf-8",
@@ -3015,11 +3144,11 @@ def main():
             )
 
     (OUT_DIR / "index.html").write_text(
-        '<!doctype html><html><head><meta http-equiv="refresh" content="0; url=/en/index.html"></head><body></body></html>',
+        f'<!doctype html><html><head><meta http-equiv="refresh" content="0; url={page_href("en", "")}"></head><body></body></html>',
         encoding="utf-8",
     )
 
-    print(f"Generated {len(data['pages']) * 2 + len(load_blog_posts()) * 2 + 1} pages with branded assets in {OUT_DIR}")
+    print(f"Generated {len(data['pages']) * 2 + len(blog_posts) * 2 + 1} pages with branded assets in {OUT_DIR}")
 
 
 if __name__ == "__main__":

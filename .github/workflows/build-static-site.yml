@@ -22,6 +22,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      SITE_ORIGIN: https://${{ github.repository_owner }}.github.io
+      SITE_BASE_PATH: /${{ github.event.repository.name }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
