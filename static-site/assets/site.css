@@ -75,19 +75,37 @@ li,
 }
 
 .skip-link {
-  position: absolute;
+  position: fixed;
   left: 14px;
-  top: -44px;
+  top: 14px;
   padding: 10px 14px;
   border-radius: 12px;
   background: white;
   color: #091826;
   text-decoration: none;
   z-index: 99;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(calc(-100% - 18px));
+  transition: transform 160ms ease, opacity 160ms ease;
 }
 
 .skip-link:focus {
-  top: 14px;
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.skip-link:focus:not(:focus-visible) {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(calc(-100% - 18px));
+}
+
+.skip-link:focus-visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
 }
 
 .site-header {
