@@ -8,6 +8,7 @@ from textwrap import dedent
 from urllib.parse import urlsplit
 
 ROOT = Path(__file__).resolve().parents[1]
+BRAND_DIR = ROOT / "brand"
 DATA_FILE = ROOT / "content" / "site-content.json"
 BLOG_DATA_FILE = ROOT / "content" / "blog-posts.json"
 BLOG_CONTENT_DIR = ROOT / "content" / "blog"
@@ -15,8 +16,11 @@ BLOG_MEDIA_DIR = ROOT / "content" / "blog-media"
 OUT_DIR = ROOT / "static-site"
 ASSETS_DIR = OUT_DIR / "assets"
 DESIGN_DIR = ROOT / "design-system"
-LOGO_SOURCE = ROOT / "brand" / "icentech-logo-horizontal.png"
+LOGO_SOURCE = BRAND_DIR / "icentech-logo-horizontal.png"
 LOGO_ASSET_NAME = "icentech-logo-horizontal.png"
+FAVICON_ASSET_NAME = "favicon.png"
+APPLE_TOUCH_ICON_ASSET_NAME = "apple-touch-icon.png"
+ICON_192_ASSET_NAME = "icon-192.png"
 DEFAULT_SITE_ORIGIN = "https://www.icentech.com"
 
 
@@ -726,6 +730,16 @@ def absolute_asset_url(data, asset_path):
     if asset_path.startswith(("http://", "https://")):
         return asset_path
     return f"{site_origin(data)}{asset_href(asset_path)}"
+
+
+def render_favicon_links():
+    return "\n".join(
+        [
+            f'  <link rel="icon" type="image/png" sizes="32x32" href="{asset_href(FAVICON_ASSET_NAME)}">',
+            f'  <link rel="apple-touch-icon" sizes="180x180" href="{asset_href(APPLE_TOUCH_ICON_ASSET_NAME)}">',
+            f'  <link rel="icon" type="image/png" sizes="192x192" href="{asset_href(ICON_192_ASSET_NAME)}">',
+        ]
+    )
 
 
 def page_href(lang, slug):
@@ -1557,6 +1571,7 @@ def render_page(data, page, lang):
   <meta property="og:url" content="{html.escape(page_url)}">
   <meta property="og:image" content="{html.escape(og_image)}">
   <link rel="canonical" href="{html.escape(page_url)}">
+{render_favicon_links()}
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
@@ -1613,6 +1628,7 @@ def render_blog_detail_document(data, page, post, lang):
   <meta property="og:url" content="{html.escape(post_url)}">
   <meta property="og:image" content="{html.escape(post_image)}">
   <link rel="canonical" href="{html.escape(post_url)}">
+{render_favicon_links()}
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
@@ -3114,6 +3130,11 @@ def write_brand_assets(data):
     if LOGO_SOURCE.exists():
         shutil.copy2(LOGO_SOURCE, ASSETS_DIR / LOGO_ASSET_NAME)
 
+    for asset_name in (FAVICON_ASSET_NAME, APPLE_TOUCH_ICON_ASSET_NAME, ICON_192_ASSET_NAME):
+        source = BRAND_DIR / asset_name
+        if source.exists():
+            shutil.copy2(source, ASSETS_DIR / asset_name)
+
     if BLOG_MEDIA_DIR.exists():
         blog_asset_dir = ASSETS_DIR / "blog"
         blog_asset_dir.mkdir(parents=True, exist_ok=True)
@@ -3162,7 +3183,16 @@ def main():
             )
 
     (OUT_DIR / "index.html").write_text(
-        f'<!doctype html><html><head><meta http-equiv="refresh" content="0; url={page_href("en", "")}"></head><body></body></html>',
+        f"""<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="refresh" content="0; url={page_href("en", "")}">
+{render_favicon_links()}
+</head>
+<body></body>
+</html>
+""",
         encoding="utf-8",
     )
 
