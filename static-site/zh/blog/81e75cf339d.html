@@ -262,18 +262,8 @@
 (() => {
   const root = document.documentElement;
   const button = document.querySelector("[data-theme-toggle]");
-  const syncThemeVisuals = () => {
-    const theme = root.getAttribute("data-theme") === "light" ? "light" : "dark";
-    document.querySelectorAll("[data-theme-visual]").forEach((image) => {
-      const nextSrc = theme === "light" ? image.getAttribute("data-light-src") : image.getAttribute("data-dark-src");
-      if (nextSrc && image.getAttribute("src") !== nextSrc) {
-        image.setAttribute("src", nextSrc);
-      }
-    });
-  };
 
   if (!button) {
-    syncThemeVisuals();
     return;
   }
 
@@ -294,11 +284,9 @@
     const nextTheme = root.getAttribute("data-theme") === "light" ? "dark" : "light";
     root.setAttribute("data-theme", nextTheme);
     window.localStorage.setItem("icentech-theme", nextTheme);
-    syncThemeVisuals();
     updateButton();
   });
 
-  syncThemeVisuals();
   updateButton();
 })();
 </script>
