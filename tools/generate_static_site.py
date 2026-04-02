@@ -1077,6 +1077,8 @@ def render_nav(page, lang):
     for group in MENU_GROUPS:
         group_title = group["title_zh"] if lang == "zh" else group["title_en"]
         group_slug = group.get("slug", group["items"][0]["slug"])
+        if group_slug == "":
+            continue
         group_active = page["slug"] == group_slug or any(item["slug"] == page["slug"] for item in group["items"])
         if len(group["items"]) == 1:
             item = group["items"][0]
@@ -2901,16 +2903,16 @@ SITE_CSS = dedent(
     .menu-title {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      padding: 12px 16px;
+      gap: 0;
+      padding: 12px 18px;
       border-radius: 999px;
       border: 1px solid rgba(143, 208, 255, 0.1);
       background: rgba(255, 255, 255, 0.04);
       color: var(--ink);
-      font-size: 12px;
+      font-size: 13px;
       font-family: var(--font-mono);
       font-weight: 600;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.03em;
       cursor: pointer;
       appearance: none;
       transition: all 0.2s ease;
@@ -2918,6 +2920,26 @@ SITE_CSS = dedent(
 
     .menu-link {
       text-decoration: none;
+    }
+
+    .menu-group > .menu-title {
+      position: relative;
+      padding-right: 34px;
+    }
+
+    .menu-group > .menu-title::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      right: 14px;
+      width: 6px;
+      height: 6px;
+      border-right: 1.5px solid currentColor;
+      border-bottom: 1.5px solid currentColor;
+      opacity: 0.34;
+      transform: translateY(-62%) rotate(45deg);
+      transition: transform 0.18s ease, opacity 0.18s ease;
+      pointer-events: none;
     }
 
     .menu-title:hover,
@@ -2929,6 +2951,13 @@ SITE_CSS = dedent(
       background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(5, 150, 239, 0.12));
       box-shadow: 0 16px 26px rgba(0, 0, 0, 0.18);
       transform: translateY(-1px);
+    }
+
+    .menu-group:hover > .menu-title::after,
+    .menu-group.is-open > .menu-title::after,
+    .menu-group:focus-within > .menu-title::after {
+      opacity: 0.58;
+      transform: translateY(-38%) rotate(225deg);
     }
 
     .menu-list {
@@ -4387,8 +4416,8 @@ SITE_CSS = dedent(
     }
 
     .footer-address {
-      font-size: 0.84rem;
-      line-height: 1.58;
+      font-size: 0.78rem;
+      line-height: 1.62;
     }
 
     .footer-title {
