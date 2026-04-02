@@ -18,6 +18,8 @@ ASSETS_DIR = OUT_DIR / "assets"
 DESIGN_DIR = ROOT / "design-system"
 LOGO_SOURCE = BRAND_DIR / "icentech-logo-horizontal.png"
 LOGO_ASSET_NAME = "icentech-logo-horizontal.png"
+LOGO_MARK_SOURCE = BRAND_DIR / "icentech-logo-mark.png"
+LOGO_MARK_ASSET_NAME = "icentech-logo-mark.png"
 FAVICON_ASSET_NAME = "favicon.png"
 APPLE_TOUCH_ICON_ASSET_NAME = "apple-touch-icon.png"
 ICON_192_ASSET_NAME = "icon-192.png"
@@ -1022,10 +1024,7 @@ def render_brand(lang):
     return f"""
     <a class="brand" href="{page_href(lang, '')}">
       <span class="brand-mark" aria-hidden="true">
-        <span class="brand-mark-arc"></span>
-        <span class="brand-mark-disc"></span>
-        <span class="brand-mark-stem"></span>
-        <span class="brand-mark-dot"></span>
+        <img class="brand-mark-image" src="{asset_href(LOGO_MARK_ASSET_NAME)}" alt="">
       </span>
       <span class="brand-copy">
         <span class="brand-name">iCentech</span>
@@ -2199,69 +2198,19 @@ SITE_CSS = dedent(
     }
 
     .brand-mark {
-      position: relative;
       width: 60px;
       height: 60px;
       flex: 0 0 auto;
-      border-radius: 18px;
-      overflow: hidden;
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
-      border: 1px solid rgba(143, 208, 255, 0.12);
-      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.16);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
     }
 
-    .brand-mark-arc,
-    .brand-mark-disc,
-    .brand-mark-stem,
-    .brand-mark-dot {
-      position: absolute;
-    }
-
-    .brand-mark-arc {
-      left: 6px;
-      top: 4px;
-      bottom: 4px;
-      width: 26px;
-      border-radius: 22px 0 0 22px;
-      background: linear-gradient(180deg, #70b71d, #4d8d0c);
-    }
-
-    .brand-mark-disc {
-      inset: 8px 8px 8px 14px;
-      border-radius: 50%;
-      background: linear-gradient(145deg, #1f6a99, #3496d2);
-    }
-
-    .brand-mark-stem {
-      left: 29px;
-      top: 18px;
-      width: 9px;
-      height: 30px;
-      border-radius: 8px;
-      background: rgba(255, 255, 255, 0.98);
-      transform: rotate(16deg);
-      box-shadow: -3px 0 0 rgba(6, 17, 25, 0.12);
-    }
-
-    .brand-mark-stem::before {
-      content: "";
-      position: absolute;
-      top: 10px;
-      right: -11px;
-      width: 20px;
-      height: 7px;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.98);
-    }
-
-    .brand-mark-dot {
-      left: 31px;
-      top: 11px;
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.98);
-      box-shadow: -2px 2px 0 rgba(6, 17, 25, 0.1);
+    .brand-mark-image {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
     }
 
     .brand-copy {
@@ -3322,9 +3271,7 @@ SITE_CSS = dedent(
     }
 
     html[data-theme="light"] .brand-mark {
-      background: linear-gradient(180deg, #ffffff, #f1f8fd);
-      border-color: rgba(17, 52, 76, 0.08);
-      box-shadow: 0 10px 18px rgba(17, 52, 76, 0.08);
+      filter: drop-shadow(0 10px 18px rgba(17, 52, 76, 0.08));
     }
 
     html[data-theme="light"] .brand-name {
@@ -3895,6 +3842,8 @@ def write_brand_assets(data):
 
     if LOGO_SOURCE.exists():
         shutil.copy2(LOGO_SOURCE, ASSETS_DIR / LOGO_ASSET_NAME)
+    if LOGO_MARK_SOURCE.exists():
+        shutil.copy2(LOGO_MARK_SOURCE, ASSETS_DIR / LOGO_MARK_ASSET_NAME)
 
     for asset_name in (FAVICON_ASSET_NAME, APPLE_TOUCH_ICON_ASSET_NAME, ICON_192_ASSET_NAME):
         source = BRAND_DIR / asset_name
