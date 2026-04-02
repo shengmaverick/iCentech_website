@@ -45,28 +45,40 @@
       <nav class="menu-panel" aria-label="Primary">
         <a class="menu-title menu-link" href="/zh/index.html">首页</a>
             <div class="menu-group" data-menu-group>
-              <button class="menu-title" type="button" aria-expanded="false">服务</button>
+              <div class="menu-trigger">
+                <a class="menu-title menu-link" href="/zh/services.html">服务</a>
+                <button class="menu-toggle" type="button" aria-expanded="false" aria-label="打开服务菜单"></button>
+              </div>
               <div class="menu-list" hidden>
                 <a class="menu-item" href="/zh/translation.html">翻译服务</a><a class="menu-item" href="/zh/dtp.html">DTP 排版</a><a class="menu-item" href="/zh/engineering.html">国际化工程</a><a class="menu-item" href="/zh/testing.html">本地化测试</a><a class="menu-item" href="/zh/video-production.html">视频本地化</a><a class="menu-item" href="/zh/interpreting.html">口译服务</a>
               </div>
             </div>
             
             <div class="menu-group" data-menu-group>
-              <button class="menu-title" type="button" aria-expanded="false">本地化</button>
+              <div class="menu-trigger">
+                <a class="menu-title menu-link is-active" href="/zh/localization.html">本地化</a>
+                <button class="menu-toggle" type="button" aria-expanded="false" aria-label="打开本地化菜单"></button>
+              </div>
               <div class="menu-list" hidden>
                 <a class="menu-item is-active" href="/zh/document-localization.html">文档本地化</a><a class="menu-item" href="/zh/website-localization.html">网站本地化</a><a class="menu-item" href="/zh/apps-localization.html">应用本地化</a><a class="menu-item" href="/zh/multimedia-localization.html">多媒体本地化</a><a class="menu-item" href="/zh/elearning-localization.html">eLearning 本地化</a>
               </div>
             </div>
             
             <div class="menu-group" data-menu-group>
-              <button class="menu-title" type="button" aria-expanded="false">技术</button>
+              <div class="menu-trigger">
+                <a class="menu-title menu-link" href="/zh/technology.html">技术</a>
+                <button class="menu-toggle" type="button" aria-expanded="false" aria-label="打开技术菜单"></button>
+              </div>
               <div class="menu-list" hidden>
                 <a class="menu-item" href="/zh/technology.html">技术能力</a><a class="menu-item" href="/zh/ai.html">AI 支持</a>
               </div>
             </div>
             
             <div class="menu-group" data-menu-group>
-              <button class="menu-title" type="button" aria-expanded="false">关于我们</button>
+              <div class="menu-trigger">
+                <a class="menu-title menu-link" href="/zh/company.html">关于我们</a>
+                <button class="menu-toggle" type="button" aria-expanded="false" aria-label="打开关于我们菜单"></button>
+              </div>
               <div class="menu-list" hidden>
                 <a class="menu-item" href="/zh/company.html">公司介绍</a><a class="menu-item" href="/zh/news-blog.html">博客</a><a class="menu-item" href="/zh/career.html">加入我们</a><a class="menu-item" href="/zh/freelance.html">合作网络</a>
               </div>
@@ -352,7 +364,7 @@
   const closeGroup = (group) => {
     clearCloseTimer(group);
     group.classList.remove("is-open");
-    const button = group.querySelector(".menu-title");
+    const button = group.querySelector(".menu-toggle");
     const list = group.querySelector(".menu-list");
     if (button) button.setAttribute("aria-expanded", "false");
     if (list) list.hidden = true;
@@ -364,7 +376,7 @@
       if (item !== group) closeGroup(item);
     });
     group.classList.add("is-open");
-    const button = group.querySelector(".menu-title");
+    const button = group.querySelector(".menu-toggle");
     const list = group.querySelector(".menu-list");
     if (button) button.setAttribute("aria-expanded", "true");
     if (list) list.hidden = false;
@@ -376,9 +388,9 @@
   };
 
   groups.forEach((group) => {
-    const button = group.querySelector(".menu-title");
+    const button = group.querySelector(".menu-toggle");
     const list = group.querySelector(".menu-list");
-    if (!button) return;
+    if (!button || !list) return;
 
     closeGroup(group);
 
@@ -390,9 +402,7 @@
         if (!group.contains(document.activeElement)) closeGroup(group);
       }, 0);
     });
-    if (list) {
-      list.addEventListener("mouseenter", () => openGroup(group));
-    }
+    list.addEventListener("mouseenter", () => openGroup(group));
     button.addEventListener("click", (event) => {
       event.stopPropagation();
       if (group.classList.contains("is-open")) {

@@ -30,6 +30,13 @@
       "summary_en": "One team for multilingual content, product, and launch work."
     },
     {
+      "slug": "services",
+      "title_zh": "服务",
+      "title_en": "Services",
+      "summary_zh": "先从翻译、排版、工程、测试、视频和口译里找到合适的支持。",
+      "summary_en": "Start with translation, DTP, engineering, QA, video, or interpreting support."
+    },
+    {
       "slug": "translation",
       "title_zh": "翻译服务",
       "title_en": "Translation",
@@ -70,6 +77,13 @@
       "title_en": "Interpreting",
       "summary_zh": "支持会议、访谈和商务沟通，让现场交流更顺畅。",
       "summary_en": "Support meetings, interviews, and business communication with reliable interpreting."
+    },
+    {
+      "slug": "localization",
+      "title_zh": "本地化",
+      "title_en": "Localization",
+      "summary_zh": "按网站、应用、文档、多媒体和培训内容来选择本地化路径。",
+      "summary_en": "Choose the right localization track for websites, apps, documents, media, and training."
     },
     {
       "slug": "document-localization",

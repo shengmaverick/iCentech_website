@@ -184,6 +184,12 @@ li,
   margin-bottom: -12px;
 }
 
+.menu-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
 .menu-group::after {
   content: "";
   position: absolute;
@@ -215,6 +221,33 @@ li,
   text-decoration: none;
 }
 
+.menu-toggle {
+  width: 42px;
+  height: 42px;
+  flex: 0 0 42px;
+  border-radius: 999px;
+  border: 1px solid rgba(143, 208, 255, 0.1);
+  background: rgba(255, 255, 255, 0.04);
+  cursor: pointer;
+  appearance: none;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.menu-toggle::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 9px;
+  height: 9px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: translate(-50%, -64%) rotate(45deg);
+  color: var(--ink);
+  transition: transform 0.2s ease;
+}
+
 .menu-title:hover,
 .menu-link:hover,
 .menu-link.is-active,
@@ -224,6 +257,19 @@ li,
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(5, 150, 239, 0.12));
   box-shadow: 0 16px 26px rgba(0, 0, 0, 0.18);
   transform: translateY(-1px);
+}
+
+.menu-toggle:hover,
+.menu-group.is-open .menu-toggle,
+.menu-group:focus-within .menu-toggle {
+  border-color: rgba(5, 150, 239, 0.32);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(5, 150, 239, 0.12));
+  box-shadow: 0 16px 26px rgba(0, 0, 0, 0.18);
+  transform: translateY(-1px);
+}
+
+.menu-group.is-open .menu-toggle::before {
+  transform: translate(-50%, -40%) rotate(225deg);
 }
 
 .menu-list {
@@ -1318,7 +1364,8 @@ html[data-theme="light"] .brand-name {
   color: #153247;
 }
 
-html[data-theme="light"] .menu-title {
+html[data-theme="light"] .menu-title,
+html[data-theme="light"] .menu-toggle {
   border-color: rgba(17, 52, 76, 0.08);
   background: rgba(255, 255, 255, 0.78);
   color: var(--ink);
@@ -1328,7 +1375,10 @@ html[data-theme="light"] .menu-title:hover,
 html[data-theme="light"] .menu-link:hover,
 html[data-theme="light"] .menu-link.is-active,
 html[data-theme="light"] .menu-group.is-open .menu-title,
-html[data-theme="light"] .menu-group:focus-within .menu-title {
+html[data-theme="light"] .menu-group:focus-within .menu-title,
+html[data-theme="light"] .menu-toggle:hover,
+html[data-theme="light"] .menu-group.is-open .menu-toggle,
+html[data-theme="light"] .menu-group:focus-within .menu-toggle {
   border-color: rgba(5, 150, 239, 0.24);
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(238, 248, 255, 0.96));
   box-shadow: 0 14px 24px rgba(17, 52, 76, 0.08);
@@ -1823,13 +1873,22 @@ html[data-theme="light"] .social-link:focus-visible {
     width: 100%;
   }
 
-  .menu-title {
+  .menu-trigger {
     width: 100%;
-    justify-content: space-between;
+  }
+
+  .menu-title {
+    width: auto;
+    flex: 1 1 auto;
+    justify-content: flex-start;
   }
 
   .menu-link {
-    justify-content: center;
+    justify-content: flex-start;
+  }
+
+  .menu-toggle {
+    flex: 0 0 44px;
   }
 
   .menu-list {

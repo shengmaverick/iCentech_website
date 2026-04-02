@@ -45,28 +45,40 @@
       <nav class="menu-panel" aria-label="Primary">
         <a class="menu-title menu-link" href="/en/index.html">HOME</a>
             <div class="menu-group" data-menu-group>
-              <button class="menu-title" type="button" aria-expanded="false">SERVICES</button>
+              <div class="menu-trigger">
+                <a class="menu-title menu-link is-active" href="/en/services.html">SERVICES</a>
+                <button class="menu-toggle" type="button" aria-expanded="false" aria-label="Open SERVICES menu"></button>
+              </div>
               <div class="menu-list" hidden>
                 <a class="menu-item" href="/en/translation.html">Translation</a><a class="menu-item" href="/en/dtp.html">DTP</a><a class="menu-item" href="/en/engineering.html">Engineering</a><a class="menu-item" href="/en/testing.html">Testing</a><a class="menu-item is-active" href="/en/video-production.html">Video</a><a class="menu-item" href="/en/interpreting.html">Interpreting</a>
               </div>
             </div>
             
             <div class="menu-group" data-menu-group>
-              <button class="menu-title" type="button" aria-expanded="false">LOCALIZATION</button>
+              <div class="menu-trigger">
+                <a class="menu-title menu-link" href="/en/localization.html">LOCALIZATION</a>
+                <button class="menu-toggle" type="button" aria-expanded="false" aria-label="Open LOCALIZATION menu"></button>
+              </div>
               <div class="menu-list" hidden>
                 <a class="menu-item" href="/en/document-localization.html">Document</a><a class="menu-item" href="/en/website-localization.html">Website</a><a class="menu-item" href="/en/apps-localization.html">Apps</a><a class="menu-item" href="/en/multimedia-localization.html">Multimedia</a><a class="menu-item" href="/en/elearning-localization.html">eLearning</a>
               </div>
             </div>
             
             <div class="menu-group" data-menu-group>
-              <button class="menu-title" type="button" aria-expanded="false">TECHNOLOGY</button>
+              <div class="menu-trigger">
+                <a class="menu-title menu-link" href="/en/technology.html">TECHNOLOGY</a>
+                <button class="menu-toggle" type="button" aria-expanded="false" aria-label="Open TECHNOLOGY menu"></button>
+              </div>
               <div class="menu-list" hidden>
                 <a class="menu-item" href="/en/technology.html">Technology</a><a class="menu-item" href="/en/ai.html">AI</a>
               </div>
             </div>
             
             <div class="menu-group" data-menu-group>
-              <button class="menu-title" type="button" aria-expanded="false">ABOUT US</button>
+              <div class="menu-trigger">
+                <a class="menu-title menu-link" href="/en/company.html">ABOUT US</a>
+                <button class="menu-toggle" type="button" aria-expanded="false" aria-label="Open ABOUT US menu"></button>
+              </div>
               <div class="menu-list" hidden>
                 <a class="menu-item" href="/en/company.html">Company</a><a class="menu-item" href="/en/news-blog.html">Blog</a><a class="menu-item" href="/en/career.html">Career</a><a class="menu-item" href="/en/freelance.html">Freelance</a>
               </div>
@@ -352,7 +364,7 @@
   const closeGroup = (group) => {
     clearCloseTimer(group);
     group.classList.remove("is-open");
-    const button = group.querySelector(".menu-title");
+    const button = group.querySelector(".menu-toggle");
     const list = group.querySelector(".menu-list");
     if (button) button.setAttribute("aria-expanded", "false");
     if (list) list.hidden = true;
@@ -364,7 +376,7 @@
       if (item !== group) closeGroup(item);
     });
     group.classList.add("is-open");
-    const button = group.querySelector(".menu-title");
+    const button = group.querySelector(".menu-toggle");
     const list = group.querySelector(".menu-list");
     if (button) button.setAttribute("aria-expanded", "true");
     if (list) list.hidden = false;
@@ -376,9 +388,9 @@
   };
 
   groups.forEach((group) => {
-    const button = group.querySelector(".menu-title");
+    const button = group.querySelector(".menu-toggle");
     const list = group.querySelector(".menu-list");
-    if (!button) return;
+    if (!button || !list) return;
 
     closeGroup(group);
 
@@ -390,9 +402,7 @@
         if (!group.contains(document.activeElement)) closeGroup(group);
       }, 0);
     });
-    if (list) {
-      list.addEventListener("mouseenter", () => openGroup(group));
-    }
+    list.addEventListener("mouseenter", () => openGroup(group));
     button.addEventListener("click", (event) => {
       event.stopPropagation();
       if (group.classList.contains("is-open")) {

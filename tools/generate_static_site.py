@@ -81,11 +81,13 @@ MENU_GROUPS = [
     {
         "title_en": "HOME",
         "title_zh": "首页",
+        "slug": "",
         "items": [{"en": "Home", "zh": "首页", "slug": ""}],
     },
     {
         "title_en": "SERVICES",
         "title_zh": "服务",
+        "slug": "services",
         "items": [
             {"en": "Translation", "zh": "翻译服务", "slug": "translation"},
             {"en": "DTP", "zh": "DTP 排版", "slug": "dtp"},
@@ -98,6 +100,7 @@ MENU_GROUPS = [
     {
         "title_en": "LOCALIZATION",
         "title_zh": "本地化",
+        "slug": "localization",
         "items": [
             {"en": "Document", "zh": "文档本地化", "slug": "document-localization"},
             {"en": "Website", "zh": "网站本地化", "slug": "website-localization"},
@@ -109,6 +112,7 @@ MENU_GROUPS = [
     {
         "title_en": "TECHNOLOGY",
         "title_zh": "技术",
+        "slug": "technology",
         "items": [
             {"en": "Technology", "zh": "技术能力", "slug": "technology"},
             {"en": "AI", "zh": "AI 支持", "slug": "ai"},
@@ -117,6 +121,7 @@ MENU_GROUPS = [
     {
         "title_en": "ABOUT US",
         "title_zh": "关于我们",
+        "slug": "company",
         "items": [
             {"en": "Company", "zh": "公司介绍", "slug": "company"},
             {"en": "Blog", "zh": "博客", "slug": "news-blog"},
@@ -309,6 +314,42 @@ PAGE_DETAILS = {
             "eyebrow": "全球语言支持",
         },
     },
+    "services": {
+        "theme": "translation",
+        "children": ["translation", "dtp", "engineering", "testing", "video-production", "interpreting"],
+        "en": {
+            "intro": "Use this page when you know the type of support you need and want to go straight to the right service track.",
+            "highlights": [
+                "Language, production, engineering, and QA support",
+                "One place to compare service options",
+                "Easy starting point before scoping the project",
+            ],
+            "workflow": ["Choose a service area", "Align scope", "Run delivery", "Expand as needed"],
+            "fit": ["Teams with one urgent need", "Buyers comparing service types", "Projects starting with a narrow scope"],
+            "outputs": ["Clear service paths", "Relevant next pages", "A faster starting point"],
+            "eyebrow": "Choose a service track",
+            "browse_kicker": "Service Areas",
+            "browse_title": "Go straight to a service page",
+            "browse_body": "Pick the area that matches your current need, then expand into related support if needed.",
+            "card_label": "Service Page",
+        },
+        "zh": {
+            "intro": "如果你已经知道自己需要哪一类支持，这一页可以帮你更快进入对应服务页面。",
+            "highlights": [
+                "覆盖语言、排版、工程和质检支持",
+                "先看清服务类型，再进入细页",
+                "适合项目刚开始确认方向时使用",
+            ],
+            "workflow": ["选定服务方向", "确认范围", "执行交付", "按需要扩展"],
+            "fit": ["先解决一个明确需求的团队", "正在比较服务类型的客户", "从小范围项目开始的团队"],
+            "outputs": ["更清楚的服务路径", "直接可看的具体页面", "更快的起步方式"],
+            "eyebrow": "先选服务方向",
+            "browse_kicker": "服务方向",
+            "browse_title": "直接进入具体服务",
+            "browse_body": "先按当前需求选方向，之后再决定是否组合更多支持。",
+            "card_label": "服务页面",
+        },
+    },
     "translation": {
         "theme": "translation",
         "en": {
@@ -469,6 +510,48 @@ PAGE_DETAILS = {
             "fit": ["商务会议", "活动和线上研讨会", "关键沟通场景"],
             "outputs": ["译员安排方案", "准备支持", "现场语言支持"],
             "eyebrow": "支持现场沟通",
+        },
+    },
+    "localization": {
+        "theme": "website-localization",
+        "children": [
+            "document-localization",
+            "website-localization",
+            "apps-localization",
+            "multimedia-localization",
+            "elearning-localization",
+        ],
+        "en": {
+            "intro": "Use this page when your content or product already needs localization and you want the right track by asset type.",
+            "highlights": [
+                "Separate paths for documents, websites, apps, media, and training",
+                "A simpler way to compare localization use cases",
+                "Useful before choosing detailed workflow support",
+            ],
+            "workflow": ["Identify the asset type", "Choose the right track", "Review workflow", "Start delivery"],
+            "fit": ["Teams with mixed content types", "Buyers matching content to workflow", "Projects entering multiple markets"],
+            "outputs": ["Clear localization tracks", "Relevant page choices", "A better starting structure"],
+            "eyebrow": "Choose the localization path",
+            "browse_kicker": "Localization Tracks",
+            "browse_title": "Start with the right content type",
+            "browse_body": "Choose the page that matches your main asset type, then go deeper into workflow and delivery details.",
+            "card_label": "Localization Page",
+        },
+        "zh": {
+            "intro": "如果你已经明确要做本地化，这一页可以先按内容类型帮你找到更合适的路径。",
+            "highlights": [
+                "按文档、网站、应用、多媒体和培训内容拆分路径",
+                "更容易比较不同本地化场景",
+                "适合在进入具体工作流前先做判断",
+            ],
+            "workflow": ["先看内容类型", "选定对应路径", "查看流程", "开始交付"],
+            "fit": ["内容类型比较多的团队", "需要先匹配页面和流程的客户", "准备进入多个市场的项目"],
+            "outputs": ["更清楚的本地化方向", "更合适的页面入口", "更合理的起步结构"],
+            "eyebrow": "先选本地化路径",
+            "browse_kicker": "本地化方向",
+            "browse_title": "按内容类型进入页面",
+            "browse_body": "先看主要资产类型，再进入对应页面确认流程和交付方式。",
+            "card_label": "本地化页面",
         },
     },
     "document-localization": {
@@ -993,6 +1076,8 @@ def render_nav(page, lang):
     items = []
     for group in MENU_GROUPS:
         group_title = group["title_zh"] if lang == "zh" else group["title_en"]
+        group_slug = group.get("slug", group["items"][0]["slug"])
+        group_active = page["slug"] == group_slug or any(item["slug"] == page["slug"] for item in group["items"])
         if len(group["items"]) == 1:
             item = group["items"][0]
             active = " is-active" if item["slug"] == page["slug"] else ""
@@ -1007,10 +1092,19 @@ def render_nav(page, lang):
             links.append(
                 f'<a class="menu-item{active}" href="{page_href(lang, item["slug"])}">{html.escape(label)}</a>'
             )
+        aria_label = (
+            f"打开{group_title}菜单"
+            if lang == "zh"
+            else f"Open {group_title} menu"
+        )
+        active = " is-active" if group_active else ""
         items.append(
             f"""
             <div class="menu-group" data-menu-group>
-              <button class="menu-title" type="button" aria-expanded="false">{html.escape(group_title)}</button>
+              <div class="menu-trigger">
+                <a class="menu-title menu-link{active}" href="{page_href(lang, group_slug)}">{html.escape(group_title)}</a>
+                <button class="menu-toggle" type="button" aria-expanded="false" aria-label="{html.escape(aria_label)}"></button>
+              </div>
               <div class="menu-list" hidden>
                 {''.join(links)}
               </div>
@@ -1341,6 +1435,89 @@ def render_related_cards(data, page, lang):
     return "".join(cards)
 
 
+def render_page_cards(data, slugs, lang, card_label):
+    pages_by_slug = {item["slug"]: item for item in data["pages"]}
+    cards = []
+    for slug in slugs:
+        page = pages_by_slug.get(slug)
+        if not page:
+            continue
+        title = page["title_zh"] if lang == "zh" else page["title_en"]
+        summary = page["summary_zh"] if lang == "zh" else page["summary_en"]
+        cards.append(
+            f"""
+            <a class="service-card related-card" href="{page_href(lang, slug)}">
+              <span class="card-kicker">{html.escape(card_label)}</span>
+              <h3>{html.escape(title)}</h3>
+              <p>{html.escape(summary)}</p>
+            </a>
+            """
+        )
+    return "".join(cards)
+
+
+def render_group_page(page, lang, data):
+    detail = get_page_detail(page, lang)
+    title = page["title_zh"] if lang == "zh" else page["title_en"]
+    summary = page["summary_zh"] if lang == "zh" else page["summary_en"]
+    browse_cards = render_page_cards(data, PAGE_DETAILS[page["slug"]]["children"], lang, detail["card_label"])
+    primary_target = PAGE_DETAILS[page["slug"]]["children"][0]
+    secondary_target = PAGE_DETAILS[page["slug"]]["children"][1]
+    return f"""
+    <section class="hero hero-page">
+      <div class="hero-copy">
+        <span class="eyebrow">{html.escape(detail['eyebrow'])}</span>
+        <h1>{html.escape(title)}</h1>
+        <p class="lead">{html.escape(summary)}</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="{page_href(lang, primary_target)}">{'查看第一个方向' if lang == 'zh' else 'Open a Service Page'}</a>
+          <a class="btn btn-secondary" href="{page_href(lang, secondary_target)}">{'再看另一个方向' if lang == 'zh' else 'Compare Another Track'}</a>
+        </div>
+      </div>
+      {render_page_visual(page, detail, lang, chips=detail['highlights'], label='总览示意' if lang == 'zh' else 'Overview View')}
+    </section>
+
+    <section class="section-shell two-col-shell">
+      <article class="panel">
+        <span class="section-kicker">{'概览' if lang == 'zh' else 'Overview'}</span>
+        <h2>{'怎么用这一页' if lang == 'zh' else 'How to Use This Page'}</h2>
+        <p>{html.escape(detail['intro'])}</p>
+      </article>
+      <article class="panel soft-panel">
+        <span class="section-kicker">{'适合' if lang == 'zh' else 'Best Fit'}</span>
+        <h2>{'适合这样开始' if lang == 'zh' else 'Best Starting Point'}</h2>
+        {render_pill_list(detail['fit'])}
+      </article>
+    </section>
+
+    <section class="quick-grid">
+      <article class="panel">
+        <span class="section-kicker">{'你会看到' if lang == 'zh' else 'You Will See'}</span>
+        {render_pill_list(detail['highlights'])}
+      </article>
+      <article class="panel">
+        <span class="section-kicker">{'你会得到' if lang == 'zh' else 'You Will Get'}</span>
+        {render_pill_list(detail['outputs'])}
+      </article>
+      <article class="panel ai-panel">
+        <span class="section-kicker">{'怎么推进' if lang == 'zh' else 'How It Starts'}</span>
+        <ol class="timeline-list">
+          {''.join(f'<li><span class="step-index">{index + 1:02d}</span><span>{html.escape(chip_text(item))}</span></li>' for index, item in enumerate(detail['workflow']))}
+        </ol>
+      </article>
+    </section>
+
+    <section class="section-shell">
+      <div class="section-heading">
+        <span class="section-kicker">{html.escape(detail['browse_kicker'])}</span>
+        <h2>{html.escape(detail['browse_title'])}</h2>
+        <p>{html.escape(detail['browse_body'])}</p>
+      </div>
+      <div class="card-grid">{browse_cards}</div>
+    </section>
+    """
+
+
 def render_blog_cards(lang, posts):
     cards = []
     for post in posts:
@@ -1660,6 +1837,8 @@ def render_blog_post_page(page, post, lang, data):
 def render_inner_page(page, lang, data):
     if page["slug"] == "news-blog":
         return render_news_blog_page(page, lang, data)
+    if page["slug"] in {"services", "localization"}:
+        return render_group_page(page, lang, data)
 
     detail = get_page_detail(page, lang)
     title = page["title_zh"] if lang == "zh" else page["title_en"]
@@ -1907,12 +2086,14 @@ def wrap_text(value, max_chars, max_lines):
 
 SVG_SCENE_MAP = {
     "": "home-og",
+    "services": "technology",
     "translation": "translation",
     "dtp": "dtp",
     "engineering": "engineering",
     "testing": "testing",
     "video-production": "video",
     "interpreting": "interpreting",
+    "localization": "website",
     "document-localization": "documents",
     "website-localization": "website",
     "apps-localization": "apps",
@@ -2366,7 +2547,7 @@ NAV_SCRIPT = dedent(
       const closeGroup = (group) => {
         clearCloseTimer(group);
         group.classList.remove("is-open");
-        const button = group.querySelector(".menu-title");
+        const button = group.querySelector(".menu-toggle");
         const list = group.querySelector(".menu-list");
         if (button) button.setAttribute("aria-expanded", "false");
         if (list) list.hidden = true;
@@ -2378,7 +2559,7 @@ NAV_SCRIPT = dedent(
           if (item !== group) closeGroup(item);
         });
         group.classList.add("is-open");
-        const button = group.querySelector(".menu-title");
+        const button = group.querySelector(".menu-toggle");
         const list = group.querySelector(".menu-list");
         if (button) button.setAttribute("aria-expanded", "true");
         if (list) list.hidden = false;
@@ -2390,9 +2571,9 @@ NAV_SCRIPT = dedent(
       };
 
       groups.forEach((group) => {
-        const button = group.querySelector(".menu-title");
+        const button = group.querySelector(".menu-toggle");
         const list = group.querySelector(".menu-list");
-        if (!button) return;
+        if (!button || !list) return;
 
         closeGroup(group);
 
@@ -2404,9 +2585,7 @@ NAV_SCRIPT = dedent(
             if (!group.contains(document.activeElement)) closeGroup(group);
           }, 0);
         });
-        if (list) {
-          list.addEventListener("mouseenter", () => openGroup(group));
-        }
+        list.addEventListener("mouseenter", () => openGroup(group));
         button.addEventListener("click", (event) => {
           event.stopPropagation();
           if (group.classList.contains("is-open")) {
@@ -2656,6 +2835,12 @@ SITE_CSS = dedent(
       margin-bottom: -12px;
     }
 
+    .menu-trigger {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
     .menu-group::after {
       content: "";
       position: absolute;
@@ -2687,6 +2872,33 @@ SITE_CSS = dedent(
       text-decoration: none;
     }
 
+    .menu-toggle {
+      width: 42px;
+      height: 42px;
+      flex: 0 0 42px;
+      border-radius: 999px;
+      border: 1px solid rgba(143, 208, 255, 0.1);
+      background: rgba(255, 255, 255, 0.04);
+      cursor: pointer;
+      appearance: none;
+      position: relative;
+      transition: all 0.2s ease;
+    }
+
+    .menu-toggle::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 9px;
+      height: 9px;
+      border-right: 2px solid currentColor;
+      border-bottom: 2px solid currentColor;
+      transform: translate(-50%, -64%) rotate(45deg);
+      color: var(--ink);
+      transition: transform 0.2s ease;
+    }
+
     .menu-title:hover,
     .menu-link:hover,
     .menu-link.is-active,
@@ -2696,6 +2908,19 @@ SITE_CSS = dedent(
       background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(5, 150, 239, 0.12));
       box-shadow: 0 16px 26px rgba(0, 0, 0, 0.18);
       transform: translateY(-1px);
+    }
+
+    .menu-toggle:hover,
+    .menu-group.is-open .menu-toggle,
+    .menu-group:focus-within .menu-toggle {
+      border-color: rgba(5, 150, 239, 0.32);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(5, 150, 239, 0.12));
+      box-shadow: 0 16px 26px rgba(0, 0, 0, 0.18);
+      transform: translateY(-1px);
+    }
+
+    .menu-group.is-open .menu-toggle::before {
+      transform: translate(-50%, -40%) rotate(225deg);
     }
 
     .menu-list {
@@ -3790,7 +4015,8 @@ SITE_CSS = dedent(
       color: #153247;
     }
 
-    html[data-theme="light"] .menu-title {
+    html[data-theme="light"] .menu-title,
+    html[data-theme="light"] .menu-toggle {
       border-color: rgba(17, 52, 76, 0.08);
       background: rgba(255, 255, 255, 0.78);
       color: var(--ink);
@@ -3800,7 +4026,10 @@ SITE_CSS = dedent(
     html[data-theme="light"] .menu-link:hover,
     html[data-theme="light"] .menu-link.is-active,
     html[data-theme="light"] .menu-group.is-open .menu-title,
-    html[data-theme="light"] .menu-group:focus-within .menu-title {
+    html[data-theme="light"] .menu-group:focus-within .menu-title,
+    html[data-theme="light"] .menu-toggle:hover,
+    html[data-theme="light"] .menu-group.is-open .menu-toggle,
+    html[data-theme="light"] .menu-group:focus-within .menu-toggle {
       border-color: rgba(5, 150, 239, 0.24);
       background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(238, 248, 255, 0.96));
       box-shadow: 0 14px 24px rgba(17, 52, 76, 0.08);
@@ -4295,13 +4524,22 @@ SITE_CSS = dedent(
         width: 100%;
       }
 
-      .menu-title {
+      .menu-trigger {
         width: 100%;
-        justify-content: space-between;
+      }
+
+      .menu-title {
+        width: auto;
+        flex: 1 1 auto;
+        justify-content: flex-start;
       }
 
       .menu-link {
-        justify-content: center;
+        justify-content: flex-start;
+      }
+
+      .menu-toggle {
+        flex: 0 0 44px;
       }
 
       .menu-list {
