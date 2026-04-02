@@ -1460,16 +1460,18 @@ def render_page_visual(page, detail, lang, image_url=None, chips=None, label=Non
         for index, item in enumerate(workflow_items)
     )
     chips_html = "".join(f"<li>{html.escape(chip_text(item))}</li>" for item in legend_items[:4])
-    image_attrs = f'src="{preview_src}" alt=""'
+    image_html = f'<img class="hero-image page-visual-image" src="{preview_src}" alt="" loading="eager">'
     if dark_preview_src:
-        image_attrs += (
-            f' data-theme-visual="true" data-light-src="{preview_src}"'
-            f' data-dark-src="{dark_preview_src}"'
-        )
+        image_html = f"""
+        <div class="theme-visual-stack">
+          <img class="hero-image page-visual-image theme-visual theme-visual-light" src="{preview_src}" alt="" loading="eager">
+          <img class="hero-image page-visual-image theme-visual theme-visual-dark" src="{dark_preview_src}" alt="" loading="eager">
+        </div>
+        """
     return f"""
     <div class="hero-visual hero-visual-card">
       <div class="hero-image-shell">
-        <img class="hero-image page-visual-image" {image_attrs}>
+        {image_html}
       </div>
       <ol class="visual-step-strip">
         {workflow_html}
@@ -2636,18 +2638,8 @@ THEME_SCRIPT = dedent(
     (() => {
       const root = document.documentElement;
       const button = document.querySelector("[data-theme-toggle]");
-      const syncThemeVisuals = () => {
-        const theme = root.getAttribute("data-theme") === "light" ? "light" : "dark";
-        document.querySelectorAll("[data-theme-visual]").forEach((image) => {
-          const nextSrc = theme === "light" ? image.getAttribute("data-light-src") : image.getAttribute("data-dark-src");
-          if (nextSrc && image.getAttribute("src") !== nextSrc) {
-            image.setAttribute("src", nextSrc);
-          }
-        });
-      };
 
       if (!button) {
-        syncThemeVisuals();
         return;
       }
 
@@ -2668,11 +2660,9 @@ THEME_SCRIPT = dedent(
         const nextTheme = root.getAttribute("data-theme") === "light" ? "dark" : "light";
         root.setAttribute("data-theme", nextTheme);
         window.localStorage.setItem("icentech-theme", nextTheme);
-        syncThemeVisuals();
         updateButton();
       });
 
-      syncThemeVisuals();
       updateButton();
     })();
     """
@@ -3143,6 +3133,24 @@ SITE_CSS = dedent(
       min-width: 0;
     }
 
+    .theme-visual-stack {
+      display: grid;
+      min-height: 280px;
+    }
+
+    .theme-visual {
+      grid-area: 1 / 1;
+      transition: opacity 0.18s ease;
+    }
+
+    .theme-visual-light {
+      opacity: 1;
+    }
+
+    .theme-visual-dark {
+      opacity: 0;
+    }
+
     .page-visual-image {
       width: 100%;
       height: 100%;
@@ -3150,6 +3158,14 @@ SITE_CSS = dedent(
       object-fit: cover;
       object-position: center;
       border-radius: 0;
+    }
+
+    html[data-theme="dark"] .theme-visual-light {
+      opacity: 0;
+    }
+
+    html[data-theme="dark"] .theme-visual-dark {
+      opacity: 1;
     }
 
     .hero-visual-map {
