@@ -775,25 +775,25 @@ PAGE_DETAILS = {
         "en": {
             "intro": "This blog gives clients one place to read iCentech updates, practical localization ideas, and project stories.",
             "highlights": [
-                "Articles publish inside the new website",
-                "The repo manages drafting, review, and publishing",
-                "Each post is easier to browse, share, and index",
+                "Company updates",
+                "Case studies",
+                "Localization insights",
             ],
-            "workflow": ["Pick a topic", "Draft", "Review", "Publish"],
+            "workflow": ["Updates", "Cases", "Insights", "Resources"],
             "fit": ["Marketing teams", "Content operations", "Clients following company updates"],
-            "outputs": ["Local article archive", "Clearer listing page", "GitHub-based management path"],
+            "outputs": ["Latest updates", "Project stories", "Industry viewpoints"],
             "eyebrow": "Company updates and insights",
         },
         "zh": {
             "intro": "这个博客栏目会把 iCentech 的动态、案例和行业内容真正放进新网站里，方便客户直接阅读。",
             "highlights": [
-                "文章直接发布在新站里",
-                "用仓库管理写作、审核和发布",
-                "更适合浏览、分享和检索",
+                "公司动态",
+                "客户案例",
+                "本地化观点",
             ],
-            "workflow": ["确定选题", "写稿", "审核", "发布"],
+            "workflow": ["动态", "案例", "洞察", "资源"],
             "fit": ["市场团队", "内容运营团队", "关注公司动态的客户"],
-            "outputs": ["站内文章归档", "更清楚的列表页", "基于 GitHub 的管理路径"],
+            "outputs": ["最新动态", "项目案例", "行业观点"],
             "eyebrow": "公司动态与行业内容",
         },
     },
@@ -1533,7 +1533,6 @@ def render_blog_cards(lang, posts):
     cards = []
     for post in posts:
         excerpt = post.get("excerpt") or excerpt_from_body(post.get("body_html", ""))
-        language_label = "中文" if detect_language(post["title"]) == "zh" else "English"
         cards.append(
             f"""
             <article class="blog-card">
@@ -1543,7 +1542,6 @@ def render_blog_cards(lang, posts):
               <div class="blog-card-body">
                 <div class="blog-card-meta">
                   <p class="blog-card-date">{html.escape(post['date'])}</p>
-                  <span class="meta-pill">{language_label}</span>
                 </div>
                 <h3><a href="{blog_href(lang, post['slug'])}">{html.escape(post['title'])}</a></h3>
                 <p>{html.escape(excerpt)}</p>
@@ -1677,8 +1675,7 @@ def render_news_blog_page(page, lang, data):
     title = page["title_zh"] if lang == "zh" else page["title_en"]
     summary = page["summary_zh"] if lang == "zh" else page["summary_en"]
     posts = filter_blog_posts(load_blog_posts(data), lang)
-    post_count = str(len(posts))
-    latest_date = posts[0]["date"] if posts else ("2026" if lang == "en" else "2026")
+    cards_html = render_blog_cards(lang, posts)
     return f"""
     <section class="hero hero-page">
       <div class="hero-copy">
@@ -1693,32 +1690,8 @@ def render_news_blog_page(page, lang, data):
       {render_page_visual(page, detail, lang, chips=detail['highlights'], label='内容示意' if lang == 'zh' else 'Content View')}
     </section>
 
-    <section class="section-shell two-col-shell">
-      <article class="panel">
-        <span class="section-kicker">{'博客' if lang == 'zh' else 'Blog'}</span>
-        <h2>{'最新内容' if lang == 'zh' else 'Latest Content'}</h2>
-        <p>{html.escape(detail['intro'])}</p>
-        {render_pill_list(detail['highlights'])}
-      </article>
-      <article class="panel ai-panel">
-        <span class="section-kicker">{'概览' if lang == 'zh' else 'Overview'}</span>
-        <h2>{'按语言查看' if lang == 'zh' else 'Browse by Language'}</h2>
-        <p>{html.escape('这里仅展示中文文章。英文内容会保留在英文版博客中。'
-        if lang == 'zh' else
-        'This page shows only English posts. Chinese articles stay in the Chinese blog.')}</p>
-        <ul class="pill-list">
-          <li>{post_count}{' 篇文章' if lang == 'zh' else ' posts'}</li>
-          <li>{'最近更新 ' if lang == 'zh' else 'Latest update '}{html.escape(latest_date)}</li>
-        </ul>
-      </article>
-    </section>
-
     <section class="section-shell" id="blog-posts">
-      <div class="section-heading">
-        <span class="section-kicker">{'文章' if lang == 'zh' else 'Posts'}</span>
-        <h2>{'最新文章' if lang == 'zh' else 'Latest Posts'}</h2>
-      </div>
-      <div class="blog-grid">{render_blog_cards(lang, posts)}</div>
+      <div class="blog-grid">{cards_html}</div>
     </section>
     """
 
@@ -2838,6 +2811,7 @@ SITE_CSS = dedent(
       flex-wrap: wrap;
       justify-content: center;
       gap: 12px;
+      min-width: 0;
     }
 
     .menu-group {
@@ -2957,6 +2931,7 @@ SITE_CSS = dedent(
       gap: 10px;
       align-items: center;
       justify-content: flex-end;
+      min-width: 0;
     }
 
     .theme-toggle,
@@ -2975,6 +2950,8 @@ SITE_CSS = dedent(
       font-family: var(--font-mono);
       letter-spacing: 0.02em;
       min-height: 42px;
+      min-width: 0;
+      text-align: center;
     }
 
     .theme-toggle {
@@ -3088,6 +3065,7 @@ SITE_CSS = dedent(
         linear-gradient(180deg, rgba(255, 255, 255, 0.05), transparent 55%),
         rgba(8, 19, 28, 0.24);
       box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+      min-width: 0;
     }
 
     .page-visual-image {
@@ -3782,6 +3760,10 @@ SITE_CSS = dedent(
       text-decoration: none;
     }
 
+    .blog-card-body h3 a {
+      overflow-wrap: anywhere;
+    }
+
     .text-link {
       color: #d3f895;
       font-weight: 700;
@@ -3924,6 +3906,7 @@ SITE_CSS = dedent(
     .post-content {
       display: grid;
       gap: 16px;
+      overflow-wrap: anywhere;
     }
 
     .post-content h2,
@@ -3941,6 +3924,21 @@ SITE_CSS = dedent(
     .post-content ol {
       padding-left: 20px;
       margin: 6px 0 0;
+    }
+
+    .post-content img,
+    .post-content video,
+    .post-content iframe {
+      max-width: 100%;
+      height: auto;
+      border-radius: 16px;
+    }
+
+    .post-content table,
+    .post-content pre {
+      display: block;
+      max-width: 100%;
+      overflow-x: auto;
     }
 
     .post-content a {
@@ -4376,6 +4374,7 @@ SITE_CSS = dedent(
     .footer-address {
       font-size: 0.78rem;
       line-height: 1.62;
+      overflow-wrap: anywhere;
     }
 
     .footer-title {
@@ -4492,8 +4491,14 @@ SITE_CSS = dedent(
         position: static;
       }
 
+      .header-inner {
+        gap: 16px;
+        padding: 14px 0;
+      }
+
       .brand {
         align-items: center;
+        gap: 12px;
       }
 
       .brand-mark {
@@ -4516,37 +4521,93 @@ SITE_CSS = dedent(
         height: 42px;
       }
 
+      .menu-panel {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+      }
+
+      .header-actions {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+      }
+
+      .theme-toggle,
+      .lang-switch {
+        width: 100%;
+        min-height: 44px;
+        padding: 0 12px;
+        font-size: 11px;
+      }
+
       .menu-group {
         width: 100%;
+        padding-bottom: 0;
+        margin-bottom: 0;
+      }
+
+      .menu-group::after {
+        display: none;
       }
 
       .menu-title {
-        width: auto;
+        width: 100%;
         flex: 1 1 auto;
+        min-height: 44px;
+        padding: 11px 14px;
         justify-content: flex-start;
+        font-size: 12px;
       }
 
       .menu-link {
+        width: 100%;
         justify-content: flex-start;
       }
 
+      .menu-group > .menu-title {
+        padding-right: 14px;
+      }
+
+      .menu-group > .menu-title::after {
+        display: none;
+      }
+
       .menu-list {
-        position: static;
-        margin-top: 10px;
-        min-width: 0;
+        display: none !important;
       }
 
       .hero-visual-map {
-        min-height: 420px;
-        padding-top: 26px;
+        min-height: 360px;
+        padding-top: 12px;
       }
 
       .visual-grid {
         grid-template-columns: 1fr;
       }
 
+      .visual-node {
+        min-height: 0;
+        padding: 16px;
+      }
+
+      .visual-node strong {
+        font-size: 1.12rem;
+      }
+
+      .visual-node p {
+        font-size: 0.9rem;
+      }
+
       .visual-step-strip {
         grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+      }
+
+      .visual-step-strip li {
+        padding: 12px 10px;
       }
 
       .visual-grid::before,
@@ -4557,6 +4618,7 @@ SITE_CSS = dedent(
 
       .hero-legend {
         margin-top: 16px;
+        padding: 14px;
       }
 
       .solution-card,
@@ -4574,12 +4636,78 @@ SITE_CSS = dedent(
       .hero-copy,
       .panel,
       .service-card,
-      .metric-card {
-        padding: 22px;
+      .metric-card,
+      .blog-card {
+        padding: 18px;
+      }
+
+      .hero-visual {
+        padding: 18px;
+      }
+
+      .hero-visual-card {
+        gap: 14px;
+      }
+
+      .page-visual-image {
+        min-height: 220px;
       }
 
       h1 {
+        font-size: clamp(2rem, 11vw, 3.1rem);
         max-width: none;
+        line-height: 1.02;
+      }
+
+      .hero-page h1 {
+        font-size: clamp(1.85rem, 10vw, 2.7rem);
+      }
+
+      .lead {
+        font-size: 0.98rem;
+      }
+
+      .hero-actions {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+
+      .btn {
+        width: 100%;
+      }
+
+      .pill-list li,
+      .hero-tag-list li,
+      .solution-tags li,
+      .trust-pills li {
+        padding: 8px 10px;
+        font-size: 0.8rem;
+      }
+
+      .blog-card-media {
+        min-height: 180px;
+      }
+
+      .blog-card-body h3 {
+        font-size: 1.18rem;
+        line-height: 1.08;
+      }
+
+      .timeline-list li {
+        grid-template-columns: 44px 1fr;
+        gap: 12px;
+        padding: 14px;
+      }
+
+      .process-step {
+        grid-template-columns: 46px 1fr;
+        gap: 10px;
+        padding: 14px 0;
+      }
+
+      .process-step-copy {
+        padding: 12px 14px;
       }
 
       .main-shell {
@@ -4588,6 +4716,44 @@ SITE_CSS = dedent(
 
       .breadcrumb {
         font-size: 0.88rem;
+      }
+
+      .footer-address {
+        font-size: 0.74rem;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .header-inner,
+      .main-shell,
+      .footer-inner {
+        width: min(var(--content-width), calc(100% - 18px));
+      }
+
+      .brand-mark {
+        width: 50px;
+        height: 50px;
+      }
+
+      .brand-name {
+        font-size: 1.8rem;
+      }
+
+      .menu-panel {
+        grid-template-columns: 1fr;
+      }
+
+      .visual-step-strip {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-copy,
+      .hero-visual,
+      .panel,
+      .service-card,
+      .metric-card,
+      .blog-card {
+        padding: 16px;
       }
     }
     """
