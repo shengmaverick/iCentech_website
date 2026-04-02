@@ -1195,11 +1195,20 @@ def render_blog_switch(post, lang):
 
 
 def render_theme_toggle(lang):
+    light_label = "切换浅色" if lang == "zh" else "Switch To Light"
+    dark_label = "切换深色" if lang == "zh" else "Switch To Dark"
     return (
         '<button class="theme-toggle" type="button" data-theme-toggle '
-        f'data-label-light="{"切换浅色" if lang == "zh" else "Switch To Light"}" '
-        f'data-label-dark="{"切换深色" if lang == "zh" else "Switch To Dark"}">'
-        f'{"主题" if lang == "zh" else "Theme"}'
+        f'data-label-light="{light_label}" '
+        f'data-label-dark="{dark_label}" '
+        'data-next-theme="dark" '
+        f'aria-label="{dark_label}" title="{dark_label}">'
+        '<span class="theme-toggle-icon theme-toggle-icon-sun" aria-hidden="true">'
+        '<svg viewBox="0 0 24 24" focusable="false"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2.8v2.6"></path><path d="M12 18.6v2.6"></path><path d="M5.5 5.5l1.8 1.8"></path><path d="M16.7 16.7l1.8 1.8"></path><path d="M2.8 12h2.6"></path><path d="M18.6 12h2.6"></path><path d="M5.5 18.5l1.8-1.8"></path><path d="M16.7 7.3l1.8-1.8"></path></svg>'
+        "</span>"
+        '<span class="theme-toggle-icon theme-toggle-icon-moon" aria-hidden="true">'
+        '<svg viewBox="0 0 24 24" focusable="false"><path d="M15.4 3.8a8.9 8.9 0 1 0 4.8 15.8A9.6 9.6 0 0 1 15.4 3.8Z"></path></svg>'
+        "</span>"
         "</button>"
     )
 
@@ -2647,8 +2656,12 @@ THEME_SCRIPT = dedent(
 
       const updateButton = () => {
         const theme = root.getAttribute("data-theme") === "light" ? "light" : "dark";
+        const nextLabel = theme === "light" ? darkLabel : lightLabel;
+        const nextTheme = theme === "light" ? "dark" : "light";
         button.setAttribute("aria-pressed", theme === "light" ? "true" : "false");
-        button.textContent = theme === "light" ? darkLabel : lightLabel;
+        button.setAttribute("aria-label", nextLabel);
+        button.setAttribute("title", nextLabel);
+        button.setAttribute("data-next-theme", nextTheme);
       };
 
       button.addEventListener("click", () => {
@@ -2991,6 +3004,34 @@ SITE_CSS = dedent(
     .theme-toggle {
       cursor: pointer;
       appearance: none;
+      padding: 0;
+      width: 42px;
+      min-width: 42px;
+      flex: 0 0 42px;
+      line-height: 1;
+    }
+
+    .theme-toggle-icon {
+      display: none;
+      width: 18px;
+      height: 18px;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .theme-toggle-icon svg {
+      width: 18px;
+      height: 18px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .theme-toggle[data-next-theme="light"] .theme-toggle-icon-sun,
+    .theme-toggle[data-next-theme="dark"] .theme-toggle-icon-moon {
+      display: inline-flex;
     }
 
     .main-shell {
@@ -4604,11 +4645,16 @@ SITE_CSS = dedent(
       .header-actions {
         width: 100%;
         display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-columns: 44px minmax(0, 1fr);
         gap: 10px;
       }
 
-      .theme-toggle,
+      .theme-toggle {
+        width: 44px;
+        min-width: 44px;
+        min-height: 44px;
+      }
+
       .lang-switch {
         width: 100%;
         min-height: 44px;

@@ -74,7 +74,7 @@
             
       </nav>
       <div class="header-actions">
-        <button class="theme-toggle" type="button" data-theme-toggle data-label-light="Switch To Light" data-label-dark="Switch To Dark">Theme</button>
+        <button class="theme-toggle" type="button" data-theme-toggle data-label-light="Switch To Light" data-label-dark="Switch To Dark" data-next-theme="dark" aria-label="Switch To Dark" title="Switch To Dark"><span class="theme-toggle-icon theme-toggle-icon-sun" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2.8v2.6"></path><path d="M12 18.6v2.6"></path><path d="M5.5 5.5l1.8 1.8"></path><path d="M16.7 16.7l1.8 1.8"></path><path d="M2.8 12h2.6"></path><path d="M18.6 12h2.6"></path><path d="M5.5 18.5l1.8-1.8"></path><path d="M16.7 7.3l1.8-1.8"></path></svg></span><span class="theme-toggle-icon theme-toggle-icon-moon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M15.4 3.8a8.9 8.9 0 1 0 4.8 15.8A9.6 9.6 0 0 1 15.4 3.8Z"></path></svg></span></button>
         <a class="lang-switch" href="/zh/news-blog.html">中文</a>
       </div>
     </div>
@@ -294,8 +294,12 @@
 
   const updateButton = () => {
     const theme = root.getAttribute("data-theme") === "light" ? "light" : "dark";
+    const nextLabel = theme === "light" ? darkLabel : lightLabel;
+    const nextTheme = theme === "light" ? "dark" : "light";
     button.setAttribute("aria-pressed", theme === "light" ? "true" : "false");
-    button.textContent = theme === "light" ? darkLabel : lightLabel;
+    button.setAttribute("aria-label", nextLabel);
+    button.setAttribute("title", nextLabel);
+    button.setAttribute("data-next-theme", nextTheme);
   };
 
   button.addEventListener("click", () => {

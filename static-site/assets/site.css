@@ -322,6 +322,34 @@ li,
 .theme-toggle {
   cursor: pointer;
   appearance: none;
+  padding: 0;
+  width: 42px;
+  min-width: 42px;
+  flex: 0 0 42px;
+  line-height: 1;
+}
+
+.theme-toggle-icon {
+  display: none;
+  width: 18px;
+  height: 18px;
+  align-items: center;
+  justify-content: center;
+}
+
+.theme-toggle-icon svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.theme-toggle[data-next-theme="light"] .theme-toggle-icon-sun,
+.theme-toggle[data-next-theme="dark"] .theme-toggle-icon-moon {
+  display: inline-flex;
 }
 
 .main-shell {
@@ -1935,11 +1963,16 @@ html[data-theme="light"] .social-link:focus-visible {
   .header-actions {
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: 44px minmax(0, 1fr);
     gap: 10px;
   }
 
-  .theme-toggle,
+  .theme-toggle {
+    width: 44px;
+    min-width: 44px;
+    min-height: 44px;
+  }
+
   .lang-switch {
     width: 100%;
     min-height: 44px;
