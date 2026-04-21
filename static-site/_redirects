@@ -1,5 +1,0 @@
-# Cloudflare Pages configuration
-# Deploy static site from static-site/ directory
-
-# SPA-friendly fallback
-/*  /index.html  200
