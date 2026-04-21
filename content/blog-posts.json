@@ -7,6 +7,44 @@
   },
   "posts": [
     {
+      "slug": "when-ai-solves-production-delivery-is-the-real-battlefield",
+      "title": "当 AI 让\u201c生产\u201d不再是难题，\u201c交付\u201d才是真正的战场",
+      "date": "2026年4月20日",
+      "excerpt": "一年多以前，我们发过一篇推文《AI 和翻译技术快速发展，翻译公司怎么办？》，当时我们就讨论了 AI 对于作为语言服务提供商的我们面临 AI 所面临的挑战跟转变。生产内容的成本趋近于零时，真正的价值转移到了交付。",
+      "subtitle": "生产内容的成本趋近于零时，真正的价值转移到了交付。",
+      "image": "blog/when-ai-solves-production-delivery-is-the-real-battlefield.png",
+      "source_url": "https://www.icentech.com/blog/when-ai-solves-production-delivery-is-the-real-battlefield",
+      "tags": [
+        "AI翻译局限性",
+        "多语种内容本地化",
+        "出海内容交付",
+        "专业翻译服务",
+        "本地化翻译流程",
+        "语言服务商"
+      ],
+      "language": "zh",
+      "body_file": "content/blog/when-ai-solves-production-delivery-is-the-real-battlefield.html"
+    },
+    {
+      "slug": "when-ai-solves-production-delivery-is-the-real-battlefield",
+      "title": "When AI Makes Production a Non-Issue, Delivery Becomes the Real Battlefield",
+      "date": "April 20, 2026",
+      "excerpt": "Over a year ago, we published an article asking how translation companies should respond to the rapid advancement of AI and translation technology. When the cost of producing content approaches zero, the real value shifts to delivery.",
+      "subtitle": "When the cost of producing content approaches zero, the real value shifts to delivery.",
+      "image": "blog/when-ai-solves-production-delivery-is-the-real-battlefield.png",
+      "source_url": "https://www.icentech.com/blog/when-ai-solves-production-delivery-is-the-real-battlefield",
+      "tags": [
+        "AI Translation Limitations",
+        "Multilingual Content Localization",
+        "Overseas Content Delivery",
+        "Professional Translation Services",
+        "Localization Workflow",
+        "Language Service Provider"
+      ],
+      "language": "en",
+      "body_file": "content/blog/when-ai-solves-production-delivery-is-the-real-battlefield-en.html"
+    },
+    {
       "slug": "icentech-successfully-renews-iso-17100-iso-18587-certifications",
       "title": "iCentech Successfully Renews ISO 17100 & ISO 18587  Certifications",
       "date": "2026年3月23日",
@@ -121,6 +159,7 @@
       "subtitle": "",
       "image": "blog/the-strategic-role-of-translation-in-global-market-expansion.jpg",
       "source_url": "https://www.icentech.com/blog/the-strategic-role-of-translation-in-global-market-expansion",
+      "pair_slug": "2afec8aa4a6",
       "tags": [
         "iCentech",
         "Professional language service provider",
@@ -204,6 +243,7 @@
       "subtitle": "",
       "image": "blog/2afec8aa4a6.jpg",
       "source_url": "https://www.icentech.com/blog/2afec8aa4a6",
+      "pair_slug": "the-strategic-role-of-translation-in-global-market-expansion",
       "tags": [
         "案例分析",
         "出海",
@@ -215,6 +255,31 @@
       "body_file": "content/blog/2afec8aa4a6.html"
     },
     {
+      "slug": "the-strategic-role-of-translation-in-global-market-expansion",
+      "title": "The Strategic Role of Translation in Global Market Expansion",
+      "date": "July 18, 2024",
+      "excerpt": "In today's interconnected world, businesses looking to expand globally must overcome language and cultural barriers. Translation plays a vital role in ensuring smooth communication, enhancing brand credibility, and engaging international customers effectively.",
+      "subtitle": "",
+      "image": "blog/the-strategic-role-of-translation-in-global-market-expansion.jpg",
+      "source_url": "https://www.icentech.com/blog/the-strategic-role-of-translation-in-global-market-expansion",
+      "pair_slug": "2afec8aa4a6",
+      "title": "The Strategic Role of Translation in Global Market Expansion",
+      "date": "July 18, 2024",
+      "excerpt": "In today's interconnected world, businesses looking to expand globally must overcome language and cultural barriers. Translation plays a vital role in ensuring smooth communication, enhancing brand credibility, and engaging international customers effectively.",
+      "subtitle": "",
+      "image": "blog/the-strategic-role-of-translation-in-global-market-expansion.jpg",
+      "source_url": "https://www.icentech.com/blog/the-strategic-role-of-translation-in-global-market-expansion",
+      "tags": [
+        "Translation and Localization",
+        "Global Market Expansion",
+        "Professional Language Services",
+        "International Business",
+        "Brand Localization"
+      ],
+      "language": "en",
+      "body_file": "content/blog/the-strategic-role-of-translation-in-global-market-expansion.html"
+    },
+    {
       "slug": "translation-of-instruction-manuals",
       "title": "Translation of Instruction Manuals",
       "date": "2024年7月12日",
@@ -222,6 +287,7 @@
       "subtitle": "",
       "image": "blog/translation-of-instruction-manuals.jpg",
       "source_url": "https://www.icentech.com/blog/translation-of-instruction-manuals",
+      "pair_slug": "81e75cf339d",
       "tags": [
         "global business",
         "translation",
@@ -240,6 +306,7 @@
       "subtitle": "",
       "image": "blog/81e75cf339d.jpg",
       "source_url": "https://www.icentech.com/blog/81e75cf339d",
+      "pair_slug": "translation-of-instruction-manuals",
       "tags": [
         "全球业务",
         "出海",
@@ -249,6 +316,25 @@
       ],
       "language": "zh",
       "body_file": "content/blog/81e75cf339d.html"
+    },
+    {
+      "slug": "translation-of-instruction-manuals",
+      "title": "Translation of Instruction Manuals",
+      "date": "June 27, 2024",
+      "excerpt": "Instruction manuals are essential documents for consumers to correctly understand, install, use, and maintain products. Professional translation and localization services play an indispensable role in global market expansion.",
+      "subtitle": "",
+      "image": "blog/translation-of-instruction-manuals.jpg",
+      "source_url": "https://www.icentech.com/blog/translation-of-instruction-manuals",
+      "pair_slug": "81e75cf339d",
+      "tags": [
+        "Instruction Manual Translation",
+        "Product Localization",
+        "Technical Translation",
+        "Professional Language Services",
+        "Global Business"
+      ],
+      "language": "en",
+      "body_file": "content/blog/translation-of-instruction-manuals.html"
     },
     {
       "slug": "automobile-industry-translation-services",
@@ -275,6 +361,7 @@
       "subtitle": "",
       "image": "blog/afef605a915.jpg",
       "source_url": "https://www.icentech.com/blog/afef605a915",
+      "pair_slug": "afef605a915-en",
       "tags": [
         "消费电子",
         "智能手机",
@@ -284,6 +371,25 @@
       ],
       "language": "zh",
       "body_file": "content/blog/afef605a915.html"
+    },
+    {
+      "slug": "afef605a915-en",
+      "title": "Consumer Electronics & Translation Services: Going Global with Localization",
+      "date": "May 28, 2024",
+      "excerpt": "The consumer electronics industry encompasses a wide range of electronic devices and household appliances. Cross-border operations are essential for consumer electronics companies looking to expand market share and increase revenue globally.",
+      "subtitle": "",
+      "image": "blog/afef605a915.jpg",
+      "source_url": "https://www.icentech.com/blog/afef605a915-en",
+      "pair_slug": "afef605a915",
+      "tags": [
+        "Consumer Electronics Localization",
+        "Cross-Border E-Commerce",
+        "Product Translation",
+        "Professional Translation Services",
+        "Global Market Expansion"
+      ],
+      "language": "en",
+      "body_file": "content/blog/afef605a915-en.html"
     },
     {
       "slug": "internal-translators-vs-professional-language-service-providers-the",
@@ -311,6 +417,7 @@
       "subtitle": "",
       "image": "blog/vs.jpg",
       "source_url": "https://www.icentech.com/blog/vs",
+      "pair_slug": "vs-en",
       "tags": [
         "出海",
         "翻译",
@@ -319,6 +426,25 @@
       ],
       "language": "zh",
       "body_file": "content/blog/vs.html"
+    },
+    {
+      "slug": "vs-en",
+      "title": "Internal Translators vs Professional Language Service Providers: The Difficult Choice",
+      "date": "April 8, 2024",
+      "excerpt": "In today's globalized business landscape, multinational and international corporations are confronted with a crucial decision: should they maintain an in-house team of translators or rely on professional language service providers (LSPs)? Both options present distinct advantages.",
+      "subtitle": "",
+      "image": "blog/vs.jpg",
+      "source_url": "https://www.icentech.com/blog/vs-en",
+      "pair_slug": "vs",
+      "tags": [
+        "In-House Translators vs LSP",
+        "Translation Vendor Management",
+        "Outsourcing Translation",
+        "Cost-Effectiveness",
+        "Language Service Provider"
+      ],
+      "language": "en",
+      "body_file": "content/blog/vs-en.html"
     },
     {
       "slug": "expending-global-business-you-need-a-reliable-multilingual-parter",
@@ -345,6 +471,7 @@
       "subtitle": "",
       "image": "blog/6787b90f3c2.jpg",
       "source_url": "https://www.icentech.com/blog/6787b90f3c2",
+      "pair_slug": "6787b90f3c2-en",
       "tags": [
         "multilingual",
         "出海",
@@ -354,6 +481,25 @@
       ],
       "language": "zh",
       "body_file": "content/blog/6787b90f3c2.html"
+    },
+    {
+      "slug": "6787b90f3c2-en",
+      "title": "Expanding Global Business? You Need a Reliable Multilingual Partner.",
+      "date": "February 27, 2024",
+      "excerpt": "In today's globalized era, establishing a foothold and achieving success in international markets requires essential multilingual language services. A language service partner capable of providing multilingual support plays a crucial role in a company's international expansion process.",
+      "subtitle": "",
+      "image": "blog/6787b90f3c2.jpg",
+      "source_url": "https://www.icentech.com/blog/6787b90f3c2-en",
+      "pair_slug": "6787b90f3c2",
+      "tags": [
+        "Multilingual Language Services",
+        "Global Market Expansion",
+        "Language Service Partner",
+        "Localization Strategy",
+        "International Business"
+      ],
+      "language": "en",
+      "body_file": "content/blog/6787b90f3c2-en.html"
     }
   ]
 }

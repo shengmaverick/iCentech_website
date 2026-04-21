@@ -1255,10 +1255,25 @@ def render_switch(page, lang):
     return f'<a class="lang-switch" href="{page_href(other, page["slug"])}">{label}</a>'
 
 
-def render_blog_switch(post, lang):
+def render_blog_switch(post, lang, blog_posts):
     other = "en" if lang == "zh" else "zh"
     label = "English" if lang == "zh" else "中文"
-    target = blog_href(other, post["slug"]) if blog_post_language(post) == other else page_href(other, "news-blog")
+    # Look up the translated version:
+    # 1. Prefer explicit pair_slug field
+    pair_slug = post.get("pair_slug")
+    if pair_slug:
+        translated = next(
+            (p for p in blog_posts if p["slug"] == pair_slug and p.get("language") == other),
+            None
+        )
+        if translated:
+            return f'<a class="lang-switch" href="{blog_href(other, pair_slug)}">{label}</a>'
+    # 2. Fall back to same-slug match
+    translated = next(
+        (p for p in blog_posts if p["slug"] == post["slug"] and p.get("language") == other),
+        None
+    )
+    target = blog_href(other, post["slug"]) if translated else page_href(other, "news-blog")
     return f'<a class="lang-switch" href="{target}">{label}</a>'
 
 
@@ -2122,11 +2137,12 @@ def render_page(data, page, lang):
 """
 
 
-def render_blog_detail_document(data, page, post, lang):
+def render_blog_detail_document(data, page, post, lang, blog_posts):
     title = post["title"]
     description = post.get("excerpt") or excerpt_from_body(post.get("body_html", ""))
     post_url = absolute_site_url(data, blog_href(lang, post["slug"]))
     post_image = absolute_asset_url(data, post.get("image", ""))
+    post_keywords = ", ".join(post.get("tags", []))
     return f"""<!doctype html>
 <html lang="{lang}">
 <head>
@@ -2134,6 +2150,7 @@ def render_blog_detail_document(data, page, post, lang):
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{html.escape(title)} | iCentech</title>
   <meta name="description" content="{html.escape(description)}">
+  <meta name="keywords" content="{html.escape(post_keywords)}">
   <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
   <meta property="og:title" content="{html.escape(title)} | iCentech">
   <meta property="og:description" content="{html.escape(description)}">
@@ -2159,7 +2176,7 @@ def render_blog_detail_document(data, page, post, lang):
       </nav>
       <div class="header-actions">
         {render_theme_toggle(lang)}
-        {render_blog_switch(post, lang)}
+        {render_blog_switch(post, lang, blog_posts)}
       </div>
     </div>
   </header>
@@ -5322,7 +5339,7 @@ def main():
             post_lang = blog_post_language(post)
             target_dir = en_blog_dir if post_lang == "en" else zh_blog_dir
             (target_dir / f"{post['slug']}.html").write_text(
-                render_blog_detail_document(data, blog_page, post, post_lang),
+                render_blog_detail_document(data, blog_page, post, post_lang, blog_posts),
                 encoding="utf-8",
             )
 
